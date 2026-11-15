@@ -1,0 +1,2638 @@
+{
+ "version": 1,
+ "note": "ฐานข้อมูลยา pilot 46 ตัว. ADR/ข้อบ่งใช้/CI-DDI เก็บแบบ tag → รายชื่อยา: yes = เกี่ยวข้องชัด, maybe = เกี่ยวข้องบ้าง (จะไม่ถูกใช้เป็นตัวเลือกหลอก). เพิ่มยาใหม่: ใส่ใน drugs แล้วเพิ่ม id ลงใน tag ที่เกี่ยวข้องทุกอัน",
+ "categories": [
+  {
+   "id": "cv",
+   "name": "Cardiovascular",
+   "th": "หัวใจและหลอดเลือด",
+   "color": "#C2364B"
+  },
+  {
+   "id": "heme",
+   "name": "Hematology",
+   "th": "ยาต้านการแข็งตัวของเลือด",
+   "color": "#B4531F"
+  },
+  {
+   "id": "endo",
+   "name": "Endocrine",
+   "th": "ต่อมไร้ท่อ",
+   "color": "#2E7D4F"
+  },
+  {
+   "id": "inf",
+   "name": "Anti-infective",
+   "th": "ยาต้านจุลชีพ",
+   "color": "#1F6FA8"
+  },
+  {
+   "id": "cns",
+   "name": "CNS",
+   "th": "ระบบประสาทและจิตเวช",
+   "color": "#46378C"
+  },
+  {
+   "id": "pain",
+   "name": "Analgesic",
+   "th": "ยาแก้ปวดและต้านอักเสบ",
+   "color": "#8A3B8F"
+  },
+  {
+   "id": "gir",
+   "name": "GI & Respiratory",
+   "th": "ทางเดินอาหารและหายใจ",
+   "color": "#0F7C7C"
+  }
+ ],
+ "drugs": [
+  {
+   "id": "amlodipine",
+   "name": "Amlodipine",
+   "cat": "cv",
+   "cls": "Dihydropyridine CCB",
+   "grp": "ccb",
+   "stem": {
+    "s": "-dipine",
+    "m": "Dihydropyridine Ca²⁺ channel blocker"
+   },
+   "moa": "Block L-type Ca²⁺ channel ที่ vascular smooth muscle → หลอดเลือดแดงขยาย ลด afterload",
+   "pk": "t½ ยาว 30–50 ชม. → OD; ระดับยาคงที่ใน 7–8 วัน",
+   "pearl": "บวมที่ข้อเท้าเกิดจากหลอดเลือดแดงขยายมากกว่าดำ (ไม่ใช่น้ำเกิน) จึงตอบสนองต่อ diuretic ไม่ดี"
+  },
+  {
+   "id": "enalapril",
+   "name": "Enalapril",
+   "cat": "cv",
+   "cls": "ACE inhibitor",
+   "grp": "acei",
+   "stem": {
+    "s": "-pril",
+    "m": "ACE inhibitor"
+   },
+   "moa": "ยับยั้ง Angiotensin-converting enzyme → ลด Angiotensin II และลดการสลาย bradykinin",
+   "pk": "Prodrug → enalaprilat (active); ให้วันละ 1–2 ครั้ง",
+   "pearl": "Bradykinin สะสม → ไอแห้งและ angioedema; ถ้าไอให้เปลี่ยนเป็น ARB"
+  },
+  {
+   "id": "losartan",
+   "name": "Losartan",
+   "cat": "cv",
+   "cls": "Angiotensin II receptor blocker (ARB)",
+   "grp": "arb",
+   "stem": {
+    "s": "-sartan",
+    "m": "Angiotensin II receptor blocker"
+   },
+   "moa": "Block AT₁ receptor ของ Angiotensin II โดยตรง (ไม่เพิ่ม bradykinin)",
+   "pk": "Active metabolite E-3174 แรงกว่าตัวยาเดิม; OD",
+   "pearl": "ไม่ทำให้ไอแบบ ACEi; มีฤทธิ์ uricosuric เล็กน้อยต่างจาก ARB ตัวอื่น"
+  },
+  {
+   "id": "hctz",
+   "name": "Hydrochlorothiazide",
+   "cat": "cv",
+   "cls": "Thiazide diuretic",
+   "grp": "thiazide",
+   "moa": "ยับยั้ง Na⁺/Cl⁻ cotransporter (NCC) ที่ distal convoluted tubule",
+   "pk": "OD ตอนเช้า; ฤทธิ์ลดลงเมื่อ eGFR < 30",
+   "pearl": "จำ 'hyperGLUC': hyperGlycemia, hyperLipidemia, hyperUricemia, hyperCalcemia (ตรงข้ามกับ loop ที่ทำให้ Ca ต่ำ)"
+  },
+  {
+   "id": "furosemide",
+   "name": "Furosemide",
+   "cat": "cv",
+   "cls": "Loop diuretic",
+   "grp": "loop",
+   "moa": "ยับยั้ง Na⁺/K⁺/2Cl⁻ cotransporter (NKCC2) ที่ thick ascending limb of Henle",
+   "pk": "IV ออกฤทธิ์ใน 5 นาที; t½ ~2 ชม.; oral bioavailability ไม่แน่นอน (10–90%)",
+   "pearl": "'Loops lose calcium' — ขับ Ca ออก ต่างจาก thiazide; ฉีดเร็วเสี่ยงหูอื้อ"
+  },
+  {
+   "id": "spironolactone",
+   "name": "Spironolactone",
+   "cat": "cv",
+   "cls": "Mineralocorticoid receptor antagonist",
+   "grp": "mra",
+   "moa": "แย่งจับ aldosterone receptor ที่ collecting duct → ขับ Na⁺ เก็บ K⁺",
+   "pk": "Active metabolite (canrenone) t½ ยาว; ฤทธิ์เต็มที่ใช้เวลาหลายวัน",
+   "pearl": "โครงสร้าง steroid จับ androgen receptor ด้วย → gynecomastia; eplerenone เลือกจำเพาะกว่า"
+  },
+  {
+   "id": "metoprolol",
+   "name": "Metoprolol",
+   "cat": "cv",
+   "cls": "β₁-selective blocker",
+   "grp": "bb",
+   "stem": {
+    "s": "-olol",
+    "m": "β-blocker"
+   },
+   "moa": "Block β₁ receptor ที่หัวใจ → ลดอัตราการเต้นและแรงบีบตัว ลด renin",
+   "pk": "Metabolized โดย CYP2D6; tartrate วันละ 2 ครั้ง, succinate (ER) OD",
+   "pearl": "ห้ามหยุดทันที (rebound tachycardia/angina); บดบังอาการใจสั่นของ hypoglycemia"
+  },
+  {
+   "id": "atorvastatin",
+   "name": "Atorvastatin",
+   "cat": "cv",
+   "cls": "HMG-CoA reductase inhibitor (statin)",
+   "grp": "statin",
+   "stem": {
+    "s": "-vastatin",
+    "m": "HMG-CoA reductase inhibitor"
+   },
+   "moa": "ยับยั้ง HMG-CoA reductase (rate-limiting step สร้าง cholesterol) → เพิ่ม LDL receptor ที่ตับ",
+   "pk": "t½ ยาว (active metabolites) → กินเวลาใดก็ได้; CYP3A4 substrate",
+   "pearl": "ปวดกล้ามเนื้อต้องตรวจ CK; เสี่ยงมากขึ้นเมื่อใช้ร่วมกับ CYP3A4 inhibitor เช่น clarithromycin"
+  },
+  {
+   "id": "warfarin",
+   "name": "Warfarin",
+   "cat": "heme",
+   "cls": "Vitamin K antagonist",
+   "grp": "vka",
+   "moa": "ยับยั้ง VKORC1 → ลดการสร้าง clotting factor II, VII, IX, X และ protein C, S",
+   "pk": "t½ ~40 ชม.; ฤทธิ์เต็มที่ใช้ 5–7 วัน; S-warfarin ผ่าน CYP2C9; ติดตาม INR",
+   "pearl": "Protein C ลดลงก่อน → ช่วงแรกเลือดแข็งตัวง่าย (skin necrosis) จึงต้องให้ heparin คลุมไว้; antidote = Vitamin K"
+  },
+  {
+   "id": "heparin",
+   "name": "Heparin (UFH)",
+   "cat": "heme",
+   "cls": "Indirect thrombin inhibitor",
+   "grp": "heparin",
+   "moa": "จับ antithrombin → เร่งการยับยั้ง thrombin (IIa) และ factor Xa",
+   "pk": "IV/SC; ออกฤทธิ์ทันทีเมื่อให้ IV; ติดตาม aPTT; ไม่ผ่านรก",
+   "pearl": "HIT เกิดจาก antibody ต่อ heparin–PF4 complex มักวันที่ 5–10; antidote = Protamine sulfate"
+  },
+  {
+   "id": "aspirin",
+   "name": "Aspirin",
+   "cat": "heme",
+   "cls": "Irreversible COX inhibitor (antiplatelet)",
+   "grp": "cox",
+   "moa": "Acetylate COX-1 แบบ irreversible → ลด thromboxane A₂ ในเกล็ดเลือดตลอดอายุเกล็ดเลือด",
+   "pk": "ฤทธิ์ต้านเกล็ดเลือดอยู่ 7–10 วัน (อายุเกล็ดเลือด) แม้ t½ ของยาสั้น",
+   "pearl": "Low dose 75–100 mg ต้านเกล็ดเลือด; ห้ามใช้ในเด็กที่ติดเชื้อไวรัส (Reye syndrome)"
+  },
+  {
+   "id": "clopidogrel",
+   "name": "Clopidogrel",
+   "cat": "heme",
+   "cls": "P2Y12 inhibitor",
+   "grp": "p2y12",
+   "stem": {
+    "s": "-grel",
+    "m": "P2Y12 platelet inhibitor"
+   },
+   "moa": "Block P2Y12 ADP receptor บนเกล็ดเลือดแบบ irreversible",
+   "pk": "Prodrug ต้องเปลี่ยนเป็น active form ผ่าน CYP2C19",
+   "pearl": "คนที่เป็น CYP2C19 poor metabolizer (พบบ่อยในคนเอเชีย) ตอบสนองต่อยาน้อย"
+  },
+  {
+   "id": "rivaroxaban",
+   "name": "Rivaroxaban",
+   "cat": "heme",
+   "cls": "Direct factor Xa inhibitor (DOAC)",
+   "grp": "xa",
+   "stem": {
+    "s": "-xaban",
+    "m": "Direct factor Xa inhibitor"
+   },
+   "moa": "ยับยั้ง factor Xa โดยตรง (ไม่ต้องอาศัย antithrombin)",
+   "pk": "ขนาด 15/20 mg ต้องกินพร้อมอาหาร; substrate ของ CYP3A4 และ P-gp",
+   "pearl": "ชื่อ '-xaban' = anti-Xa; ไม่ต้องตรวจ INR; ไม่ใช้ใน mechanical valve"
+  },
+  {
+   "id": "metformin",
+   "name": "Metformin",
+   "cat": "endo",
+   "cls": "Biguanide",
+   "grp": "biguanide",
+   "moa": "ลดการสร้างกลูโคสที่ตับ (gluconeogenesis) ผ่าน AMPK และเพิ่ม insulin sensitivity",
+   "pk": "ไม่ถูก metabolize ขับออกทางไตทั้งหมด; กินพร้อมอาหารเพื่อลด GI upset",
+   "pearl": "First-line ใน T2DM; ใช้เดี่ยวไม่ทำให้น้ำตาลต่ำและน้ำหนักไม่ขึ้น"
+  },
+  {
+   "id": "glipizide",
+   "name": "Glipizide",
+   "cat": "endo",
+   "cls": "Sulfonylurea",
+   "grp": "su",
+   "moa": "ปิด K⁺-ATP channel ที่ β-cell ของตับอ่อน → depolarize → หลั่ง insulin",
+   "pk": "Metabolized ที่ตับเป็น inactive metabolite → ปลอดภัยกว่า glibenclamide ในผู้ป่วยไตเสื่อม",
+   "pearl": "ต้องมี β-cell เหลืออยู่จึงได้ผล; ระวัง hypoglycemia ในผู้สูงอายุ"
+  },
+  {
+   "id": "pioglitazone",
+   "name": "Pioglitazone",
+   "cat": "endo",
+   "cls": "Thiazolidinedione (TZD)",
+   "grp": "tzd",
+   "stem": {
+    "s": "-glitazone",
+    "m": "PPAR-γ agonist (thiazolidinedione)"
+   },
+   "moa": "กระตุ้น PPAR-γ ใน adipose tissue → เพิ่ม insulin sensitivity",
+   "pk": "OD; ฤทธิ์เต็มที่ใช้ 6–12 สัปดาห์ (ออกฤทธิ์ผ่านการถอดรหัสยีน)",
+   "pearl": "บวมน้ำ → ห้ามใช้ใน heart failure NYHA III–IV"
+  },
+  {
+   "id": "empagliflozin",
+   "name": "Empagliflozin",
+   "cat": "endo",
+   "cls": "SGLT2 inhibitor",
+   "grp": "sglt2",
+   "stem": {
+    "s": "-gliflozin",
+    "m": "SGLT2 inhibitor"
+   },
+   "moa": "ยับยั้ง SGLT2 ที่ proximal tubule → ขับกลูโคสออกทางปัสสาวะ",
+   "pk": "OD; ฤทธิ์ลดน้ำตาลลดลงเมื่อ eGFR ต่ำ แต่ยังได้ประโยชน์ต่อหัวใจและไต",
+   "pearl": "มีหลักฐานลด hospitalization จาก HF และชะลอ CKD แม้ไม่เป็นเบาหวาน"
+  },
+  {
+   "id": "glargine",
+   "name": "Insulin glargine",
+   "cat": "endo",
+   "cls": "Long-acting basal insulin",
+   "grp": "insulin",
+   "moa": "จับ insulin receptor → เพิ่มการนำกลูโคสเข้าเซลล์ (GLUT4) ลดการสร้างกลูโคสที่ตับ",
+   "pk": "SC เกิดตะกอนใต้ผิวหนังแล้วค่อยๆ ปล่อย → ไม่มี peak ออกฤทธิ์ ~24 ชม.",
+   "pearl": "ห้ามผสมกับ insulin ชนิดอื่นในเข็มเดียวกัน (pH 4); หมุนเวียนตำแหน่งฉีด"
+  },
+  {
+   "id": "levothyroxine",
+   "name": "Levothyroxine",
+   "cat": "endo",
+   "cls": "Synthetic thyroid hormone (T4)",
+   "grp": "thyroid",
+   "moa": "T4 สังเคราะห์ ถูกเปลี่ยนเป็น T3 ที่เนื้อเยื่อ → จับ nuclear thyroid receptor",
+   "pk": "t½ ~7 วัน → ปรับขนาดแล้วตรวจ TSH ซ้ำใน 6–8 สัปดาห์; กินตอนท้องว่าง",
+   "pearl": "กินห่างจาก Ca, Fe, antacid อย่างน้อย 4 ชม. เพราะยาถูกจับทำให้ดูดซึมลดลง"
+  },
+  {
+   "id": "prednisolone",
+   "name": "Prednisolone",
+   "cat": "endo",
+   "cls": "Glucocorticoid",
+   "grp": "steroid",
+   "stem": {
+    "s": "pred-",
+    "m": "Glucocorticoid (prednisone derivative)"
+   },
+   "moa": "จับ glucocorticoid receptor → ลดการถอดรหัสยีนอักเสบ (เช่น ยับยั้ง phospholipase A₂ ผ่าน lipocortin)",
+   "pk": "Prednisone เป็น prodrug ที่ตับเปลี่ยนเป็น prednisolone; กินตอนเช้าพร้อมอาหาร",
+   "pearl": "ใช้นาน > 2–3 สัปดาห์ต้อง taper เพราะกด HPA axis"
+  },
+  {
+   "id": "amoxicillin",
+   "name": "Amoxicillin",
+   "cat": "inf",
+   "cls": "Aminopenicillin (β-lactam)",
+   "grp": "betalactam",
+   "stem": {
+    "s": "-cillin",
+    "m": "Penicillin antibiotic"
+   },
+   "moa": "จับ penicillin-binding protein (PBP) → ยับยั้ง transpeptidation ของ peptidoglycan ผนังเซลล์",
+   "pk": "t½ ~1 ชม. → วันละ 2–3 ครั้ง; time-dependent killing; ดูดซึมดีกว่า ampicillin",
+   "pearl": "ผื่นแดงเมื่อให้ในผู้ป่วย infectious mononucleosis (EBV) ไม่ได้แปลว่าแพ้จริงเสมอ"
+  },
+  {
+   "id": "ceftriaxone",
+   "name": "Ceftriaxone",
+   "cat": "inf",
+   "cls": "3rd-generation cephalosporin",
+   "grp": "betalactam",
+   "stem": {
+    "s": "cef-",
+    "m": "Cephalosporin antibiotic"
+   },
+   "moa": "จับ PBP → ยับยั้งการสร้างผนังเซลล์ (β-lactam ที่ทนต่อ β-lactamase หลายชนิด)",
+   "pk": "t½ ~8 ชม. → OD; ขับออกทั้งทางน้ำดีและไต จึงไม่ต้องปรับขนาดในไตเสื่อม",
+   "pearl": "ขับทางน้ำดีมาก → ตกตะกอน Ca-ceftriaxone ในถุงน้ำดี (pseudolithiasis)"
+  },
+  {
+   "id": "vancomycin",
+   "name": "Vancomycin",
+   "cat": "inf",
+   "cls": "Glycopeptide",
+   "grp": "glycopeptide",
+   "moa": "จับปลาย D-Ala-D-Ala ของ peptidoglycan precursor → ยับยั้งการสร้างผนังเซลล์ Gram-positive",
+   "pk": "Oral ไม่ดูดซึม (ใช้รักษา C. difficile ในลำไส้); IV ติดตามระดับยา (AUC/trough)",
+   "pearl": "หยดเร็ว → histamine หลั่ง เกิดผื่นแดงช่วงบน (vancomycin flushing) แก้โดยหยดช้าลง ≥ 1 ชม."
+  },
+  {
+   "id": "gentamicin",
+   "name": "Gentamicin",
+   "cat": "inf",
+   "cls": "Aminoglycoside",
+   "grp": "ribo30s",
+   "moa": "จับ 30S ribosome → อ่านรหัส mRNA ผิด เกิดโปรตีนผิดปกติ (bactericidal)",
+   "pk": "Concentration-dependent + post-antibiotic effect → ให้วันละครั้ง; ขับทางไต",
+   "pearl": "'-micin' มาจาก Micromonospora ส่วน '-mycin' มาจาก Streptomyces; พิษต่อไตและหูไม่ขึ้นกับกัน"
+  },
+  {
+   "id": "azithromycin",
+   "name": "Azithromycin",
+   "cat": "inf",
+   "cls": "Macrolide",
+   "grp": "ribo50s",
+   "stem": {
+    "s": "-thromycin",
+    "m": "Macrolide antibiotic"
+   },
+   "moa": "จับ 50S ribosome (23S rRNA) → ยับยั้ง translocation ของการสร้างโปรตีน",
+   "pk": "t½ ยาวมาก ~68 ชม. สะสมในเนื้อเยื่อ → ให้ 3–5 วันก็พอ",
+   "pearl": "ครอบคลุม atypical (Mycoplasma, Chlamydia, Legionella); เป็น CYP3A4 inhibitor อ่อนกว่า clarithromycin มาก"
+  },
+  {
+   "id": "doxycycline",
+   "name": "Doxycycline",
+   "cat": "inf",
+   "cls": "Tetracycline",
+   "grp": "ribo30s",
+   "stem": {
+    "s": "-cycline",
+    "m": "Tetracycline antibiotic"
+   },
+   "moa": "จับ 30S ribosome → ขัดขวาง aminoacyl-tRNA เข้าจับ (bacteriostatic)",
+   "pk": "กินวันละ 1–2 ครั้ง; ดื่มน้ำตามมากๆ และห้ามนอนทันทีหลังกิน",
+   "pearl": "จับ Ca²⁺ ในฟันและกระดูกที่กำลังสร้าง → ฟันเหลืองถาวรในเด็ก"
+  },
+  {
+   "id": "ciprofloxacin",
+   "name": "Ciprofloxacin",
+   "cat": "inf",
+   "cls": "Fluoroquinolone",
+   "grp": "fq",
+   "stem": {
+    "s": "-floxacin",
+    "m": "Fluoroquinolone antibiotic"
+   },
+   "moa": "ยับยั้ง DNA gyrase (topoisomerase II) และ topoisomerase IV → DNA แตกหัก",
+   "pk": "Oral bioavailability ~70%; ยับยั้ง CYP1A2",
+   "pearl": "ครอบคลุม Pseudomonas แต่ครอบคลุม Streptococcus pneumoniae ไม่ดี"
+  },
+  {
+   "id": "metronidazole",
+   "name": "Metronidazole",
+   "cat": "inf",
+   "cls": "Nitroimidazole",
+   "grp": "nitroimidazole",
+   "stem": {
+    "s": "-nidazole",
+    "m": "Nitroimidazole antimicrobial"
+   },
+   "moa": "ถูก reduce ภายในเชื้อ anaerobe/protozoa เป็น free radical → ทำลาย DNA",
+   "pk": "Oral bioavailability เกือบ 100% → oral ได้ผลเท่า IV",
+   "pearl": "ครอบคลุม anaerobe ใต้กระบังลม (B. fragilis) และ protozoa; ห้ามดื่มแอลกอฮอล์ระหว่างใช้"
+  },
+  {
+   "id": "smxtmp",
+   "name": "Co-trimoxazole (SMX-TMP)",
+   "cat": "inf",
+   "cls": "Folate synthesis inhibitor",
+   "grp": "folate",
+   "moa": "SMX ยับยั้ง dihydropteroate synthase + TMP ยับยั้ง dihydrofolate reductase → block 2 ขั้นตอน (synergy)",
+   "pk": "อัตราส่วน SMX:TMP = 5:1; oral ดูดซึมดี",
+   "pearl": "TMP ออกฤทธิ์คล้าย amiloride ที่ ENaC → hyperkalemia; ยาหลักสำหรับ PCP ใน HIV"
+  },
+  {
+   "id": "fluoxetine",
+   "name": "Fluoxetine",
+   "cat": "cns",
+   "cls": "SSRI",
+   "grp": "ssri",
+   "moa": "ยับยั้ง serotonin transporter (SERT) → เพิ่ม serotonin ใน synapse",
+   "pk": "Active metabolite norfluoxetine t½ 1–2 สัปดาห์; เป็น CYP2D6 inhibitor แรง",
+   "pearl": "หยุดยาแล้วต้องรอ 5 สัปดาห์ก่อนเริ่ม MAOI; ฤทธิ์ต้านซึมเศร้าเห็นผลใน 2–4 สัปดาห์"
+  },
+  {
+   "id": "amitriptyline",
+   "name": "Amitriptyline",
+   "cat": "cns",
+   "cls": "Tricyclic antidepressant (TCA)",
+   "grp": "tca",
+   "stem": {
+    "s": "-triptyline",
+    "m": "Tricyclic antidepressant"
+   },
+   "moa": "ยับยั้ง reuptake ของ norepinephrine และ serotonin + block muscarinic, H₁, α₁ receptor",
+   "pk": "Metabolite คือ nortriptyline (active); กินก่อนนอนเพราะง่วง",
+   "pearl": "Overdose อันตราย: QRS กว้าง ชัก anticholinergic toxicity → รักษาด้วย sodium bicarbonate"
+  },
+  {
+   "id": "diazepam",
+   "name": "Diazepam",
+   "cat": "cns",
+   "cls": "Benzodiazepine",
+   "grp": "bzd",
+   "stem": {
+    "s": "-azepam",
+    "m": "Benzodiazepine"
+   },
+   "moa": "จับ GABA-A receptor (BZD site) → เพิ่มความถี่ของการเปิด Cl⁻ channel",
+   "pk": "Lipophilic ออกฤทธิ์เร็ว; active metabolite desmethyldiazepam t½ ยาวมาก → สะสมในผู้สูงอายุ",
+   "pearl": "Antidote = Flumazenil; barbiturate เพิ่ม 'ระยะเวลา' เปิด channel ส่วน BZD เพิ่ม 'ความถี่'"
+  },
+  {
+   "id": "haloperidol",
+   "name": "Haloperidol",
+   "cat": "cns",
+   "cls": "Typical antipsychotic (high potency)",
+   "grp": "d2",
+   "stem": {
+    "s": "-peridol",
+    "m": "Butyrophenone antipsychotic"
+   },
+   "moa": "Block D₂ receptor ใน mesolimbic pathway (และ nigrostriatal → EPS)",
+   "pk": "มีรูปแบบ decanoate ฉีดเข้ากล้ามทุก 4 สัปดาห์",
+   "pearl": "High potency = EPS มาก แต่ sedation และ anticholinergic น้อย"
+  },
+  {
+   "id": "phenytoin",
+   "name": "Phenytoin",
+   "cat": "cns",
+   "cls": "Hydantoin antiepileptic",
+   "grp": "nachannel",
+   "moa": "Block voltage-gated Na⁺ channel ในสถานะ inactivated → ลดการ firing ซ้ำๆ",
+   "pk": "Zero-order (Michaelis–Menten) kinetics ที่ระดับรักษา → เพิ่มขนาดนิดเดียวระดับยาพุ่ง; CYP inducer",
+   "pearl": "ระดับรักษา 10–20 mg/L; albumin ต่ำต้องคำนวณ corrected level"
+  },
+  {
+   "id": "carbamazepine",
+   "name": "Carbamazepine",
+   "cat": "cns",
+   "cls": "Iminostilbene antiepileptic",
+   "grp": "nachannel",
+   "moa": "Block voltage-gated Na⁺ channel → ลดการส่งกระแสประสาทซ้ำๆ",
+   "pk": "Autoinduction: เหนี่ยวนำ CYP3A4 ของตัวเอง → t½ สั้นลงใน 2–4 สัปดาห์แรก",
+   "pearl": "ต้องตรวจ HLA-B*1502 ก่อนเริ่มยาในคนไทย/เอเชีย (เสี่ยง SJS/TEN); ยาแรกสำหรับ trigeminal neuralgia"
+  },
+  {
+   "id": "valproate",
+   "name": "Valproate",
+   "cat": "cns",
+   "cls": "Broad-spectrum antiepileptic",
+   "grp": "nachannel",
+   "moa": "หลายกลไก: block Na⁺ channel, T-type Ca²⁺ channel และเพิ่ม GABA",
+   "pk": "จับ albumin สูง; เป็น enzyme inhibitor (ต่างจาก phenytoin/carbamazepine)",
+   "pearl": "Teratogen แรงที่สุดในกลุ่ม (neural tube defect) → หลีกเลี่ยงในหญิงวัยเจริญพันธุ์"
+  },
+  {
+   "id": "lithium",
+   "name": "Lithium",
+   "cat": "cns",
+   "cls": "Mood stabilizer",
+   "grp": "lithium",
+   "moa": "ยับยั้ง inositol monophosphatase และ GSK-3 → ปรับ second messenger signaling",
+   "pk": "ขับทางไตแบบเดียวกับ Na⁺; ระดับรักษาแคบ 0.6–1.2 mmol/L",
+   "pearl": "Na⁺ ต่ำหรือขาดน้ำ → ไตดูด Li⁺ กลับมากขึ้น ระดับยาพุ่ง"
+  },
+  {
+   "id": "paracetamol",
+   "name": "Paracetamol",
+   "cat": "pain",
+   "cls": "Analgesic-antipyretic",
+   "grp": "cox",
+   "moa": "ยับยั้ง COX ในระบบประสาทส่วนกลาง (ฤทธิ์ต้านอักเสบส่วนปลายน้อย)",
+   "pk": "ขนาดสูงสุด 4 g/วัน; overdose → NAPQI เกิน glutathione",
+   "pearl": "Antidote = N-acetylcysteine (NAC) ให้ภายใน 8 ชม.ได้ผลดีที่สุด"
+  },
+  {
+   "id": "ibuprofen",
+   "name": "Ibuprofen",
+   "cat": "pain",
+   "cls": "Non-selective NSAID",
+   "grp": "cox",
+   "moa": "ยับยั้ง COX-1 และ COX-2 แบบ reversible → ลด prostaglandin",
+   "pk": "t½ ~2 ชม. → วันละ 3–4 ครั้ง; กินหลังอาหาร",
+   "pearl": "กินก่อน low-dose aspirin จะไปแย่งจับ COX-1 ทำให้ aspirin ต้านเกล็ดเลือดไม่ได้"
+  },
+  {
+   "id": "celecoxib",
+   "name": "Celecoxib",
+   "cat": "pain",
+   "cls": "COX-2 selective inhibitor",
+   "grp": "cox",
+   "stem": {
+    "s": "-coxib",
+    "m": "COX-2 selective inhibitor"
+   },
+   "moa": "ยับยั้ง COX-2 แบบเลือกจำเพาะ → ลด prostaglandin ที่อักเสบโดยไม่กระทบ COX-1 ที่กระเพาะ",
+   "pk": "วันละ 1–2 ครั้ง; CYP2C9 substrate",
+   "pearl": "GI ปลอดภัยกว่า แต่ลด prostacyclin ขณะที่ TXA₂ ยังอยู่ → เสี่ยง thrombosis"
+  },
+  {
+   "id": "morphine",
+   "name": "Morphine",
+   "cat": "pain",
+   "cls": "Opioid agonist",
+   "grp": "opioid",
+   "moa": "กระตุ้น μ-opioid receptor → ลดการส่งสัญญาณปวดที่ไขสันหลังและสมอง",
+   "pk": "Glucuronidation → M6G (active, ขับทางไต สะสมในไตเสื่อม) และ M3G",
+   "pearl": "ร่างกายดื้อต่อฤทธิ์ส่วนใหญ่ได้ ยกเว้น constipation และ miosis; antidote = Naloxone"
+  },
+  {
+   "id": "omeprazole",
+   "name": "Omeprazole",
+   "cat": "gir",
+   "cls": "Proton pump inhibitor (PPI)",
+   "grp": "ppi",
+   "stem": {
+    "s": "-prazole",
+    "m": "Proton pump inhibitor"
+   },
+   "moa": "ยับยั้ง H⁺/K⁺-ATPase ที่ parietal cell แบบ irreversible",
+   "pk": "Prodrug ถูก activate ในกรด; กินก่อนอาหารเช้า 30–60 นาที; CYP2C19",
+   "pearl": "ต้องกินก่อนอาหารเพราะปั๊มทำงานตอนกินอาหาร ยาจึงจับปั๊มที่กำลังทำงานได้"
+  },
+  {
+   "id": "ondansetron",
+   "name": "Ondansetron",
+   "cat": "gir",
+   "cls": "5-HT₃ antagonist",
+   "grp": "5ht3",
+   "stem": {
+    "s": "-setron",
+    "m": "5-HT₃ antagonist"
+   },
+   "moa": "Block 5-HT₃ receptor ที่ vagal afferent ในลำไส้และ chemoreceptor trigger zone",
+   "pk": "t½ ~4 ชม.; มีรูปแบบละลายในปาก (ODT)",
+   "pearl": "ได้ผลดีกับคลื่นไส้จากเคมีบำบัดและหลังผ่าตัด แต่ไม่ช่วย motion sickness"
+  },
+  {
+   "id": "metoclopramide",
+   "name": "Metoclopramide",
+   "cat": "gir",
+   "cls": "D₂ antagonist (prokinetic)",
+   "grp": "d2",
+   "moa": "Block D₂ receptor ที่ CTZ และลำไส้ + กระตุ้น 5-HT₄ → เพิ่มการบีบตัวของกระเพาะ",
+   "pk": "ผ่าน blood-brain barrier ได้ (ต่างจาก domperidone) → เกิด EPS",
+   "pearl": "จำกัดการใช้ไม่เกิน 12 สัปดาห์เพราะเสี่ยง tardive dyskinesia"
+  },
+  {
+   "id": "salbutamol",
+   "name": "Salbutamol",
+   "cat": "gir",
+   "cls": "Short-acting β₂ agonist (SABA)",
+   "grp": "b2",
+   "moa": "กระตุ้น β₂ receptor ที่กล้ามเนื้อเรียบหลอดลม → เพิ่ม cAMP → หลอดลมขยาย",
+   "pk": "Inhaler ออกฤทธิ์ใน 5 นาที อยู่ได้ 4–6 ชม.",
+   "pearl": "กระตุ้น Na⁺/K⁺-ATPase ดึง K⁺ เข้าเซลล์ → ใช้ nebulize รักษา hyperkalemia ได้"
+  },
+  {
+   "id": "montelukast",
+   "name": "Montelukast",
+   "cat": "gir",
+   "cls": "Leukotriene receptor antagonist",
+   "grp": "ltra",
+   "stem": {
+    "s": "-lukast",
+    "m": "Leukotriene receptor antagonist"
+   },
+   "moa": "Block CysLT₁ receptor → ลดการหดเกร็งหลอดลมและการอักเสบจาก leukotriene",
+   "pk": "OD ตอนเย็น",
+   "pearl": "มี boxed warning ด้าน neuropsychiatric (ฝันร้าย อารมณ์เปลี่ยน) ต้องเฝ้าระวัง"
+  }
+ ],
+ "tags": {
+  "adr": {
+   "Edema / fluid retention": {
+    "yes": [
+     "amlodipine",
+     "pioglitazone",
+     "ibuprofen",
+     "celecoxib",
+     "prednisolone"
+    ],
+    "maybe": [
+     "glargine",
+     "metoprolol"
+    ]
+   },
+   "Gingival hyperplasia": {
+    "yes": [
+     "amlodipine",
+     "phenytoin"
+    ],
+    "maybe": []
+   },
+   "Flushing": {
+    "yes": [
+     "amlodipine",
+     "vancomycin"
+    ],
+    "maybe": [
+     "morphine",
+     "aspirin"
+    ]
+   },
+   "Dry cough": {
+    "yes": [
+     "enalapril"
+    ],
+    "maybe": [
+     "losartan"
+    ]
+   },
+   "Hyperkalemia": {
+    "yes": [
+     "enalapril",
+     "losartan",
+     "spironolactone",
+     "smxtmp",
+     "heparin",
+     "ibuprofen",
+     "celecoxib"
+    ],
+    "maybe": [
+     "metoprolol"
+    ]
+   },
+   "Hypokalemia": {
+    "yes": [
+     "hctz",
+     "furosemide",
+     "salbutamol",
+     "glargine",
+     "prednisolone"
+    ],
+    "maybe": [
+     "gentamicin",
+     "amitriptyline"
+    ]
+   },
+   "Hyponatremia": {
+    "yes": [
+     "hctz",
+     "furosemide",
+     "fluoxetine",
+     "carbamazepine"
+    ],
+    "maybe": [
+     "spironolactone",
+     "amitriptyline",
+     "haloperidol",
+     "enalapril",
+     "losartan"
+    ]
+   },
+   "Hypomagnesemia": {
+    "yes": [
+     "omeprazole",
+     "furosemide"
+    ],
+    "maybe": [
+     "hctz",
+     "gentamicin"
+    ]
+   },
+   "Hypercalcemia": {
+    "yes": [
+     "hctz",
+     "lithium"
+    ],
+    "maybe": [
+     "levothyroxine"
+    ]
+   },
+   "Hyperuricemia / gout": {
+    "yes": [
+     "hctz",
+     "furosemide"
+    ],
+    "maybe": [
+     "aspirin"
+    ]
+   },
+   "Hyperglycemia": {
+    "yes": [
+     "hctz",
+     "prednisolone"
+    ],
+    "maybe": [
+     "atorvastatin",
+     "furosemide",
+     "ciprofloxacin",
+     "metoprolol",
+     "haloperidol"
+    ]
+   },
+   "Hypoglycemia": {
+    "yes": [
+     "glipizide",
+     "glargine"
+    ],
+    "maybe": [
+     "ciprofloxacin",
+     "smxtmp",
+     "metoprolol",
+     "pioglitazone",
+     "empagliflozin"
+    ]
+   },
+   "Masked hypoglycemia symptoms": {
+    "yes": [
+     "metoprolol"
+    ],
+    "maybe": []
+   },
+   "Ototoxicity": {
+    "yes": [
+     "furosemide",
+     "gentamicin",
+     "vancomycin",
+     "aspirin"
+    ],
+    "maybe": [
+     "azithromycin",
+     "ibuprofen"
+    ]
+   },
+   "Nephrotoxicity": {
+    "yes": [
+     "vancomycin",
+     "gentamicin",
+     "ibuprofen",
+     "celecoxib",
+     "lithium"
+    ],
+    "maybe": [
+     "enalapril",
+     "losartan",
+     "smxtmp",
+     "aspirin",
+     "furosemide",
+     "spironolactone",
+     "empagliflozin",
+     "ciprofloxacin",
+     "amoxicillin",
+     "omeprazole"
+    ]
+   },
+   "Gynecomastia": {
+    "yes": [
+     "spironolactone"
+    ],
+    "maybe": [
+     "haloperidol",
+     "metoclopramide",
+     "omeprazole"
+    ]
+   },
+   "Bradycardia": {
+    "yes": [
+     "metoprolol"
+    ],
+    "maybe": [
+     "lithium",
+     "morphine",
+     "fluoxetine",
+     "haloperidol",
+     "ondansetron",
+     "diazepam"
+    ]
+   },
+   "Tachycardia / palpitation": {
+    "yes": [
+     "levothyroxine",
+     "salbutamol",
+     "amitriptyline"
+    ],
+    "maybe": [
+     "amlodipine",
+     "haloperidol",
+     "metoclopramide",
+     "fluoxetine"
+    ]
+   },
+   "Orthostatic hypotension": {
+    "yes": [
+     "amitriptyline"
+    ],
+    "maybe": [
+     "furosemide",
+     "hctz",
+     "spironolactone",
+     "haloperidol",
+     "enalapril",
+     "losartan",
+     "metoprolol",
+     "amlodipine",
+     "morphine",
+     "diazepam",
+     "empagliflozin"
+    ]
+   },
+   "Myopathy / rhabdomyolysis": {
+    "yes": [
+     "atorvastatin"
+    ],
+    "maybe": [
+     "haloperidol",
+     "prednisolone",
+     "ciprofloxacin",
+     "azithromycin"
+    ]
+   },
+   "Bleeding": {
+    "yes": [
+     "warfarin",
+     "heparin",
+     "aspirin",
+     "clopidogrel",
+     "rivaroxaban",
+     "ibuprofen"
+    ],
+    "maybe": [
+     "celecoxib",
+     "fluoxetine",
+     "valproate",
+     "prednisolone",
+     "amitriptyline",
+     "carbamazepine"
+    ]
+   },
+   "Warfarin-induced skin necrosis": {
+    "yes": [
+     "warfarin"
+    ],
+    "maybe": []
+   },
+   "Heparin-induced thrombocytopenia (HIT)": {
+    "yes": [
+     "heparin"
+    ],
+    "maybe": []
+   },
+   "TTP": {
+    "yes": [
+     "clopidogrel"
+    ],
+    "maybe": []
+   },
+   "Peptic ulcer": {
+    "yes": [
+     "aspirin",
+     "ibuprofen"
+    ],
+    "maybe": [
+     "celecoxib",
+     "prednisolone",
+     "clopidogrel"
+    ]
+   },
+   "Reye syndrome": {
+    "yes": [
+     "aspirin"
+    ],
+    "maybe": []
+   },
+   "Lactic acidosis": {
+    "yes": [
+     "metformin"
+    ],
+    "maybe": []
+   },
+   "Vitamin B12 deficiency": {
+    "yes": [
+     "metformin",
+     "omeprazole"
+    ],
+    "maybe": []
+   },
+   "Weight gain": {
+    "yes": [
+     "glipizide",
+     "pioglitazone",
+     "glargine",
+     "valproate",
+     "prednisolone",
+     "amitriptyline",
+     "lithium"
+    ],
+    "maybe": [
+     "haloperidol",
+     "carbamazepine",
+     "metoprolol",
+     "fluoxetine"
+    ]
+   },
+   "Osteoporosis / fracture": {
+    "yes": [
+     "pioglitazone",
+     "omeprazole",
+     "prednisolone",
+     "levothyroxine"
+    ],
+    "maybe": [
+     "phenytoin",
+     "carbamazepine",
+     "valproate",
+     "heparin",
+     "empagliflozin",
+     "warfarin",
+     "fluoxetine",
+     "furosemide"
+    ]
+   },
+   "Genital mycotic infection": {
+    "yes": [
+     "empagliflozin"
+    ],
+    "maybe": [
+     "prednisolone",
+     "amoxicillin",
+     "ceftriaxone",
+     "doxycycline",
+     "ciprofloxacin",
+     "azithromycin",
+     "smxtmp",
+     "metronidazole",
+     "vancomycin",
+     "gentamicin",
+     "pioglitazone"
+    ]
+   },
+   "Euglycemic DKA": {
+    "yes": [
+     "empagliflozin"
+    ],
+    "maybe": []
+   },
+   "Lipodystrophy at injection site": {
+    "yes": [
+     "glargine"
+    ],
+    "maybe": [
+     "heparin"
+    ]
+   },
+   "Heart failure exacerbation": {
+    "yes": [
+     "pioglitazone",
+     "ibuprofen",
+     "celecoxib"
+    ],
+    "maybe": [
+     "metoprolol",
+     "prednisolone",
+     "amitriptyline"
+    ]
+   },
+   "Cardiovascular thrombotic events": {
+    "yes": [
+     "celecoxib",
+     "ibuprofen"
+    ],
+    "maybe": [
+     "prednisolone"
+    ]
+   },
+   "Adrenal suppression": {
+    "yes": [
+     "prednisolone"
+    ],
+    "maybe": []
+   },
+   "Cushingoid features": {
+    "yes": [
+     "prednisolone"
+    ],
+    "maybe": []
+   },
+   "Increased infection risk": {
+    "yes": [
+     "prednisolone"
+    ],
+    "maybe": [
+     "carbamazepine",
+     "omeprazole"
+    ]
+   },
+   "Rash in EBV infection": {
+    "yes": [
+     "amoxicillin"
+    ],
+    "maybe": [
+     "ceftriaxone"
+    ]
+   },
+   "Biliary pseudolithiasis": {
+    "yes": [
+     "ceftriaxone"
+    ],
+    "maybe": []
+   },
+   "C. difficile infection": {
+    "yes": [
+     "ceftriaxone",
+     "amoxicillin",
+     "ciprofloxacin",
+     "omeprazole"
+    ],
+    "maybe": [
+     "azithromycin",
+     "doxycycline",
+     "smxtmp",
+     "gentamicin",
+     "vancomycin",
+     "metronidazole"
+    ]
+   },
+   "Infusion-related flushing (red man)": {
+    "yes": [
+     "vancomycin"
+    ],
+    "maybe": [
+     "morphine"
+    ]
+   },
+   "Neuromuscular blockade": {
+    "yes": [
+     "gentamicin"
+    ],
+    "maybe": []
+   },
+   "QT prolongation": {
+    "yes": [
+     "azithromycin",
+     "ciprofloxacin",
+     "haloperidol",
+     "ondansetron",
+     "amitriptyline"
+    ],
+    "maybe": [
+     "fluoxetine",
+     "metoclopramide",
+     "metronidazole",
+     "smxtmp",
+     "lithium",
+     "furosemide",
+     "hctz",
+     "morphine",
+     "doxycycline",
+     "omeprazole"
+    ]
+   },
+   "Photosensitivity": {
+    "yes": [
+     "doxycycline",
+     "ciprofloxacin",
+     "smxtmp",
+     "hctz"
+    ],
+    "maybe": [
+     "amitriptyline",
+     "carbamazepine",
+     "furosemide",
+     "haloperidol",
+     "celecoxib",
+     "ibuprofen",
+     "glipizide",
+     "amlodipine"
+    ]
+   },
+   "Tooth discoloration in children": {
+    "yes": [
+     "doxycycline"
+    ],
+    "maybe": []
+   },
+   "Pill esophagitis": {
+    "yes": [
+     "doxycycline"
+    ],
+    "maybe": [
+     "aspirin",
+     "ibuprofen",
+     "celecoxib"
+    ]
+   },
+   "Tendinopathy / tendon rupture": {
+    "yes": [
+     "ciprofloxacin"
+    ],
+    "maybe": [
+     "prednisolone"
+    ]
+   },
+   "Disulfiram-like reaction with alcohol": {
+    "yes": [
+     "metronidazole"
+    ],
+    "maybe": [
+     "glipizide",
+     "ceftriaxone"
+    ]
+   },
+   "Metallic taste": {
+    "yes": [
+     "metronidazole",
+     "lithium"
+    ],
+    "maybe": [
+     "enalapril"
+    ]
+   },
+   "Peripheral neuropathy": {
+    "yes": [
+     "metronidazole"
+    ],
+    "maybe": [
+     "phenytoin",
+     "ciprofloxacin",
+     "metformin"
+    ]
+   },
+   "SJS/TEN": {
+    "yes": [
+     "smxtmp",
+     "carbamazepine",
+     "phenytoin"
+    ],
+    "maybe": [
+     "amoxicillin",
+     "ceftriaxone",
+     "valproate",
+     "ibuprofen",
+     "celecoxib",
+     "paracetamol",
+     "ciprofloxacin",
+     "azithromycin",
+     "doxycycline",
+     "metronidazole",
+     "omeprazole",
+     "fluoxetine",
+     "lithium"
+    ]
+   },
+   "Agranulocytosis / aplastic anemia": {
+    "yes": [
+     "carbamazepine"
+    ],
+    "maybe": [
+     "smxtmp",
+     "phenytoin",
+     "valproate",
+     "haloperidol",
+     "metronidazole",
+     "ibuprofen"
+    ]
+   },
+   "Sexual dysfunction": {
+    "yes": [
+     "fluoxetine"
+    ],
+    "maybe": [
+     "metoprolol",
+     "spironolactone",
+     "haloperidol",
+     "amitriptyline",
+     "hctz",
+     "metoclopramide",
+     "lithium",
+     "diazepam",
+     "carbamazepine",
+     "phenytoin",
+     "morphine"
+    ]
+   },
+   "Serotonin syndrome": {
+    "yes": [
+     "fluoxetine"
+    ],
+    "maybe": [
+     "ondansetron",
+     "metoclopramide",
+     "amitriptyline",
+     "lithium",
+     "morphine",
+     "valproate"
+    ]
+   },
+   "Suicidality in young patients": {
+    "yes": [
+     "fluoxetine",
+     "amitriptyline"
+    ],
+    "maybe": [
+     "montelukast",
+     "carbamazepine",
+     "valproate",
+     "phenytoin"
+    ]
+   },
+   "Anticholinergic effects": {
+    "yes": [
+     "amitriptyline"
+    ],
+    "maybe": [
+     "haloperidol",
+     "carbamazepine",
+     "diazepam"
+    ]
+   },
+   "Constipation": {
+    "yes": [
+     "morphine",
+     "ondansetron",
+     "amitriptyline"
+    ],
+    "maybe": [
+     "amlodipine",
+     "haloperidol",
+     "glipizide"
+    ]
+   },
+   "Miosis": {
+    "yes": [
+     "morphine"
+    ],
+    "maybe": []
+   },
+   "Respiratory depression": {
+    "yes": [
+     "morphine",
+     "diazepam"
+    ],
+    "maybe": []
+   },
+   "Physical dependence / withdrawal": {
+    "yes": [
+     "diazepam",
+     "morphine"
+    ],
+    "maybe": [
+     "metoprolol",
+     "amitriptyline",
+     "fluoxetine",
+     "prednisolone",
+     "phenytoin",
+     "carbamazepine",
+     "valproate"
+    ]
+   },
+   "Extrapyramidal symptoms (EPS)": {
+    "yes": [
+     "haloperidol",
+     "metoclopramide"
+    ],
+    "maybe": [
+     "ondansetron",
+     "fluoxetine",
+     "lithium",
+     "valproate",
+     "amitriptyline"
+    ]
+   },
+   "Tardive dyskinesia": {
+    "yes": [
+     "haloperidol",
+     "metoclopramide"
+    ],
+    "maybe": [
+     "lithium",
+     "amitriptyline",
+     "fluoxetine"
+    ]
+   },
+   "Hyperprolactinemia": {
+    "yes": [
+     "haloperidol",
+     "metoclopramide"
+    ],
+    "maybe": [
+     "fluoxetine",
+     "amitriptyline",
+     "morphine"
+    ]
+   },
+   "Neuroleptic malignant syndrome": {
+    "yes": [
+     "haloperidol",
+     "metoclopramide"
+    ],
+    "maybe": [
+     "lithium"
+    ]
+   },
+   "Ataxia / nystagmus": {
+    "yes": [
+     "phenytoin",
+     "carbamazepine"
+    ],
+    "maybe": [
+     "diazepam",
+     "lithium",
+     "valproate",
+     "gentamicin",
+     "metronidazole"
+    ]
+   },
+   "Hirsutism": {
+    "yes": [
+     "phenytoin"
+    ],
+    "maybe": [
+     "prednisolone",
+     "valproate"
+    ]
+   },
+   "Hepatotoxicity": {
+    "yes": [
+     "valproate",
+     "paracetamol",
+     "atorvastatin"
+    ],
+    "maybe": [
+     "carbamazepine",
+     "phenytoin",
+     "pioglitazone",
+     "azithromycin",
+     "amoxicillin",
+     "ibuprofen",
+     "celecoxib",
+     "doxycycline",
+     "ciprofloxacin",
+     "smxtmp",
+     "metronidazole",
+     "ceftriaxone",
+     "fluoxetine",
+     "haloperidol",
+     "amitriptyline",
+     "rivaroxaban",
+     "warfarin",
+     "diazepam",
+     "omeprazole",
+     "losartan",
+     "enalapril",
+     "glipizide",
+     "heparin"
+    ]
+   },
+   "Pancreatitis": {
+    "yes": [
+     "valproate"
+    ],
+    "maybe": [
+     "hctz",
+     "furosemide",
+     "enalapril",
+     "losartan",
+     "prednisolone",
+     "metronidazole",
+     "doxycycline",
+     "smxtmp",
+     "atorvastatin",
+     "carbamazepine",
+     "empagliflozin",
+     "paracetamol",
+     "omeprazole",
+     "metformin"
+    ]
+   },
+   "Hyperammonemia": {
+    "yes": [
+     "valproate"
+    ],
+    "maybe": [
+     "carbamazepine"
+    ]
+   },
+   "Tremor": {
+    "yes": [
+     "lithium",
+     "valproate",
+     "salbutamol",
+     "levothyroxine"
+    ],
+    "maybe": [
+     "fluoxetine",
+     "amitriptyline",
+     "haloperidol",
+     "metoclopramide",
+     "carbamazepine",
+     "ciprofloxacin",
+     "phenytoin",
+     "prednisolone"
+    ]
+   },
+   "Hypothyroidism": {
+    "yes": [
+     "lithium"
+    ],
+    "maybe": [
+     "carbamazepine",
+     "phenytoin",
+     "valproate"
+    ]
+   },
+   "Nephrogenic diabetes insipidus": {
+    "yes": [
+     "lithium"
+    ],
+    "maybe": []
+   },
+   "Neuropsychiatric events (nightmares, mood change)": {
+    "yes": [
+     "montelukast"
+    ],
+    "maybe": [
+     "ciprofloxacin",
+     "prednisolone",
+     "metoclopramide",
+     "fluoxetine",
+     "diazepam",
+     "levothyroxine",
+     "metronidazole",
+     "salbutamol",
+     "valproate",
+     "carbamazepine",
+     "phenytoin",
+     "lithium",
+     "amitriptyline",
+     "haloperidol",
+     "azithromycin"
+    ]
+   }
+  },
+  "use": {
+   "Hypertension": {
+    "yes": [
+     "amlodipine",
+     "enalapril",
+     "losartan",
+     "hctz",
+     "metoprolol",
+     "spironolactone"
+    ],
+    "maybe": [
+     "furosemide"
+    ]
+   },
+   "Angina": {
+    "yes": [
+     "amlodipine",
+     "metoprolol"
+    ],
+    "maybe": [
+     "aspirin",
+     "clopidogrel",
+     "atorvastatin",
+     "heparin"
+    ]
+   },
+   "Heart failure (HFrEF)": {
+    "yes": [
+     "enalapril",
+     "losartan",
+     "spironolactone",
+     "metoprolol",
+     "empagliflozin",
+     "furosemide"
+    ],
+    "maybe": [
+     "hctz"
+    ]
+   },
+   "Edema (HF, cirrhosis, renal)": {
+    "yes": [
+     "furosemide",
+     "hctz",
+     "spironolactone"
+    ],
+    "maybe": []
+   },
+   "Diabetic kidney disease": {
+    "yes": [
+     "enalapril",
+     "losartan",
+     "empagliflozin"
+    ],
+    "maybe": []
+   },
+   "Primary hyperaldosteronism": {
+    "yes": [
+     "spironolactone"
+    ],
+    "maybe": []
+   },
+   "AF rate control": {
+    "yes": [
+     "metoprolol"
+    ],
+    "maybe": []
+   },
+   "Stroke prevention in AF": {
+    "yes": [
+     "warfarin",
+     "rivaroxaban"
+    ],
+    "maybe": [
+     "heparin",
+     "aspirin"
+    ]
+   },
+   "DVT / PE": {
+    "yes": [
+     "warfarin",
+     "heparin",
+     "rivaroxaban"
+    ],
+    "maybe": [
+     "aspirin"
+    ]
+   },
+   "Acute coronary syndrome": {
+    "yes": [
+     "aspirin",
+     "clopidogrel",
+     "heparin",
+     "metoprolol",
+     "atorvastatin"
+    ],
+    "maybe": [
+     "morphine",
+     "enalapril",
+     "losartan",
+     "spironolactone",
+     "rivaroxaban"
+    ]
+   },
+   "Mechanical heart valve": {
+    "yes": [
+     "warfarin"
+    ],
+    "maybe": [
+     "heparin",
+     "aspirin"
+    ]
+   },
+   "Dyslipidemia": {
+    "yes": [
+     "atorvastatin"
+    ],
+    "maybe": []
+   },
+   "Type 2 diabetes": {
+    "yes": [
+     "metformin",
+     "glipizide",
+     "pioglitazone",
+     "empagliflozin",
+     "glargine"
+    ],
+    "maybe": []
+   },
+   "Type 1 diabetes": {
+    "yes": [
+     "glargine"
+    ],
+    "maybe": []
+   },
+   "Hypothyroidism": {
+    "yes": [
+     "levothyroxine"
+    ],
+    "maybe": []
+   },
+   "Asthma": {
+    "yes": [
+     "salbutamol",
+     "montelukast",
+     "prednisolone"
+    ],
+    "maybe": []
+   },
+   "Acute bronchospasm (reliever)": {
+    "yes": [
+     "salbutamol"
+    ],
+    "maybe": []
+   },
+   "Allergic rhinitis": {
+    "yes": [
+     "montelukast"
+    ],
+    "maybe": [
+     "prednisolone"
+    ]
+   },
+   "Autoimmune / inflammatory diseases": {
+    "yes": [
+     "prednisolone"
+    ],
+    "maybe": [
+     "celecoxib",
+     "ibuprofen"
+    ]
+   },
+   "Treatment of hyperkalemia": {
+    "yes": [
+     "salbutamol"
+    ],
+    "maybe": [
+     "glargine",
+     "furosemide"
+    ]
+   },
+   "Community-acquired pneumonia": {
+    "yes": [
+     "amoxicillin",
+     "ceftriaxone",
+     "azithromycin",
+     "doxycycline"
+    ],
+    "maybe": [
+     "ciprofloxacin",
+     "smxtmp",
+     "vancomycin"
+    ]
+   },
+   "Acute otitis media / sinusitis": {
+    "yes": [
+     "amoxicillin"
+    ],
+    "maybe": [
+     "azithromycin",
+     "doxycycline",
+     "smxtmp",
+     "ceftriaxone"
+    ]
+   },
+   "H. pylori eradication": {
+    "yes": [
+     "amoxicillin",
+     "omeprazole",
+     "metronidazole"
+    ],
+    "maybe": [
+     "azithromycin",
+     "doxycycline"
+    ]
+   },
+   "Bacterial meningitis": {
+    "yes": [
+     "ceftriaxone",
+     "vancomycin"
+    ],
+    "maybe": [
+     "amoxicillin",
+     "gentamicin",
+     "smxtmp"
+    ]
+   },
+   "Gonorrhea": {
+    "yes": [
+     "ceftriaxone"
+    ],
+    "maybe": [
+     "azithromycin",
+     "ciprofloxacin",
+     "doxycycline"
+    ]
+   },
+   "MRSA infection": {
+    "yes": [
+     "vancomycin",
+     "smxtmp",
+     "doxycycline"
+    ],
+    "maybe": []
+   },
+   "C. difficile infection (treatment)": {
+    "yes": [
+     "vancomycin",
+     "metronidazole"
+    ],
+    "maybe": []
+   },
+   "Serious Gram-negative infection": {
+    "yes": [
+     "gentamicin",
+     "ceftriaxone",
+     "ciprofloxacin"
+    ],
+    "maybe": [
+     "smxtmp"
+    ]
+   },
+   "Infective endocarditis (synergy)": {
+    "yes": [
+     "gentamicin"
+    ],
+    "maybe": [
+     "vancomycin",
+     "ceftriaxone",
+     "amoxicillin"
+    ]
+   },
+   "Chlamydia": {
+    "yes": [
+     "azithromycin",
+     "doxycycline"
+    ],
+    "maybe": []
+   },
+   "Acne": {
+    "yes": [
+     "doxycycline"
+    ],
+    "maybe": [
+     "spironolactone",
+     "azithromycin"
+    ]
+   },
+   "Scrub typhus / rickettsial infection": {
+    "yes": [
+     "doxycycline"
+    ],
+    "maybe": [
+     "azithromycin"
+    ]
+   },
+   "Urinary tract infection": {
+    "yes": [
+     "ciprofloxacin",
+     "smxtmp"
+    ],
+    "maybe": [
+     "amoxicillin",
+     "ceftriaxone",
+     "gentamicin"
+    ]
+   },
+   "Pseudomonas infection": {
+    "yes": [
+     "ciprofloxacin"
+    ],
+    "maybe": [
+     "gentamicin"
+    ]
+   },
+   "Anaerobic infection": {
+    "yes": [
+     "metronidazole"
+    ],
+    "maybe": [
+     "amoxicillin"
+    ]
+   },
+   "Trichomoniasis / giardiasis": {
+    "yes": [
+     "metronidazole"
+    ],
+    "maybe": []
+   },
+   "Bacterial vaginosis": {
+    "yes": [
+     "metronidazole"
+    ],
+    "maybe": []
+   },
+   "Pneumocystis pneumonia (PCP)": {
+    "yes": [
+     "smxtmp"
+    ],
+    "maybe": [
+     "prednisolone"
+    ]
+   },
+   "Major depressive disorder": {
+    "yes": [
+     "fluoxetine",
+     "amitriptyline"
+    ],
+    "maybe": [
+     "lithium"
+    ]
+   },
+   "OCD / panic disorder": {
+    "yes": [
+     "fluoxetine"
+    ],
+    "maybe": [
+     "amitriptyline",
+     "diazepam"
+    ]
+   },
+   "Neuropathic pain": {
+    "yes": [
+     "amitriptyline"
+    ],
+    "maybe": [
+     "carbamazepine",
+     "phenytoin",
+     "valproate"
+    ]
+   },
+   "Trigeminal neuralgia": {
+    "yes": [
+     "carbamazepine"
+    ],
+    "maybe": [
+     "phenytoin"
+    ]
+   },
+   "Migraine prophylaxis": {
+    "yes": [
+     "amitriptyline",
+     "valproate",
+     "metoprolol"
+    ],
+    "maybe": []
+   },
+   "Anxiety disorders": {
+    "yes": [
+     "diazepam"
+    ],
+    "maybe": [
+     "fluoxetine",
+     "amitriptyline"
+    ]
+   },
+   "Status epilepticus": {
+    "yes": [
+     "diazepam",
+     "phenytoin"
+    ],
+    "maybe": [
+     "valproate"
+    ]
+   },
+   "Alcohol withdrawal": {
+    "yes": [
+     "diazepam"
+    ],
+    "maybe": [
+     "carbamazepine"
+    ]
+   },
+   "Muscle spasm": {
+    "yes": [
+     "diazepam"
+    ],
+    "maybe": []
+   },
+   "Schizophrenia / acute psychosis": {
+    "yes": [
+     "haloperidol"
+    ],
+    "maybe": []
+   },
+   "Delirium / acute agitation": {
+    "yes": [
+     "haloperidol"
+    ],
+    "maybe": [
+     "diazepam"
+    ]
+   },
+   "Focal / tonic-clonic epilepsy": {
+    "yes": [
+     "phenytoin",
+     "carbamazepine",
+     "valproate"
+    ],
+    "maybe": [
+     "diazepam"
+    ]
+   },
+   "Absence seizure": {
+    "yes": [
+     "valproate"
+    ],
+    "maybe": []
+   },
+   "Bipolar disorder": {
+    "yes": [
+     "lithium",
+     "valproate",
+     "carbamazepine"
+    ],
+    "maybe": [
+     "haloperidol"
+    ]
+   },
+   "Fever": {
+    "yes": [
+     "paracetamol",
+     "ibuprofen",
+     "aspirin"
+    ],
+    "maybe": []
+   },
+   "Mild–moderate pain": {
+    "yes": [
+     "paracetamol",
+     "ibuprofen",
+     "celecoxib",
+     "aspirin"
+    ],
+    "maybe": [
+     "morphine"
+    ]
+   },
+   "Osteoarthritis / rheumatoid arthritis": {
+    "yes": [
+     "celecoxib",
+     "ibuprofen"
+    ],
+    "maybe": [
+     "prednisolone",
+     "paracetamol",
+     "aspirin"
+    ]
+   },
+   "Severe pain (cancer, post-operative)": {
+    "yes": [
+     "morphine"
+    ],
+    "maybe": []
+   },
+   "GERD / peptic ulcer": {
+    "yes": [
+     "omeprazole"
+    ],
+    "maybe": []
+   },
+   "Chemotherapy-induced nausea & vomiting": {
+    "yes": [
+     "ondansetron"
+    ],
+    "maybe": [
+     "metoclopramide",
+     "prednisolone",
+     "diazepam",
+     "haloperidol"
+    ]
+   },
+   "Diabetic gastroparesis": {
+    "yes": [
+     "metoclopramide"
+    ],
+    "maybe": [
+     "azithromycin"
+    ]
+   }
+  },
+  "ci": {
+   "Pregnancy (teratogenic)": {
+    "yes": [
+     "warfarin",
+     "enalapril",
+     "losartan",
+     "atorvastatin",
+     "doxycycline",
+     "valproate",
+     "phenytoin",
+     "carbamazepine",
+     "lithium"
+    ],
+    "maybe": [
+     "gentamicin",
+     "spironolactone",
+     "ibuprofen",
+     "celecoxib",
+     "aspirin",
+     "ciprofloxacin",
+     "smxtmp",
+     "metronidazole",
+     "fluoxetine",
+     "diazepam",
+     "glipizide",
+     "rivaroxaban",
+     "amitriptyline",
+     "haloperidol",
+     "prednisolone",
+     "empagliflozin",
+     "pioglitazone",
+     "ondansetron",
+     "morphine",
+     "hctz",
+     "furosemide",
+     "metoprolol",
+     "clopidogrel",
+     "azithromycin"
+    ]
+   },
+   "Bilateral renal artery stenosis": {
+    "yes": [
+     "enalapril",
+     "losartan"
+    ],
+    "maybe": [
+     "spironolactone"
+    ]
+   },
+   "History of angioedema with ACE inhibitor": {
+    "yes": [
+     "enalapril"
+    ],
+    "maybe": [
+     "losartan"
+    ]
+   },
+   "↑ K⁺ when combined with ACEi / ARB / K-sparing diuretic": {
+    "yes": [
+     "enalapril",
+     "losartan",
+     "spironolactone",
+     "smxtmp"
+    ],
+    "maybe": [
+     "heparin",
+     "ibuprofen",
+     "celecoxib",
+     "metoprolol",
+     "aspirin"
+    ]
+   },
+   "↑ Lithium level (thiazide, ACEi, ARB, NSAID)": {
+    "yes": [
+     "hctz",
+     "enalapril",
+     "losartan",
+     "ibuprofen",
+     "celecoxib",
+     "lithium"
+    ],
+    "maybe": [
+     "furosemide",
+     "spironolactone",
+     "metronidazole",
+     "aspirin",
+     "carbamazepine",
+     "fluoxetine",
+     "haloperidol"
+    ]
+   },
+   "↑ Oto/nephrotoxicity with aminoglycoside": {
+    "yes": [
+     "furosemide",
+     "gentamicin",
+     "vancomycin"
+    ],
+    "maybe": [
+     "ibuprofen",
+     "celecoxib",
+     "aspirin",
+     "ceftriaxone"
+    ]
+   },
+   "↑ Level with strong CYP3A4 inhibitor (e.g., clarithromycin)": {
+    "yes": [
+     "atorvastatin",
+     "amlodipine",
+     "rivaroxaban",
+     "carbamazepine",
+     "diazepam"
+    ],
+    "maybe": [
+     "haloperidol",
+     "ondansetron",
+     "fluoxetine",
+     "prednisolone",
+     "clopidogrel",
+     "omeprazole",
+     "morphine",
+     "phenytoin",
+     "amitriptyline",
+     "warfarin",
+     "glipizide",
+     "pioglitazone",
+     "losartan",
+     "azithromycin",
+     "metoprolol"
+    ]
+   },
+   "Strong enzyme inducer (↓ OCP, ↓ warfarin effect)": {
+    "yes": [
+     "carbamazepine",
+     "phenytoin"
+    ],
+    "maybe": [
+     "prednisolone",
+     "valproate"
+    ]
+   },
+   "↓ Oral contraceptive efficacy": {
+    "yes": [
+     "carbamazepine",
+     "phenytoin"
+    ],
+    "maybe": [
+     "amoxicillin",
+     "doxycycline",
+     "valproate",
+     "ceftriaxone",
+     "azithromycin",
+     "metronidazole",
+     "ciprofloxacin",
+     "smxtmp"
+    ]
+   },
+   "↑ INR when combined with warfarin": {
+    "yes": [
+     "metronidazole",
+     "smxtmp",
+     "ciprofloxacin",
+     "warfarin"
+    ],
+    "maybe": [
+     "fluoxetine",
+     "azithromycin",
+     "doxycycline",
+     "aspirin",
+     "ibuprofen",
+     "celecoxib",
+     "paracetamol",
+     "amoxicillin",
+     "ceftriaxone",
+     "valproate",
+     "levothyroxine",
+     "omeprazole",
+     "atorvastatin",
+     "clopidogrel",
+     "heparin",
+     "rivaroxaban",
+     "phenytoin",
+     "prednisolone",
+     "amitriptyline",
+     "glipizide",
+     "gentamicin",
+     "vancomycin"
+    ]
+   },
+   "↓ Clopidogrel activation (CYP2C19 inhibition)": {
+    "yes": [
+     "omeprazole",
+     "clopidogrel"
+    ],
+    "maybe": [
+     "fluoxetine",
+     "carbamazepine",
+     "diazepam",
+     "phenytoin"
+    ]
+   },
+   "↑ Theophylline level (CYP1A2 inhibition)": {
+    "yes": [
+     "ciprofloxacin"
+    ],
+    "maybe": [
+     "azithromycin",
+     "phenytoin",
+     "carbamazepine",
+     "fluoxetine",
+     "omeprazole"
+    ]
+   },
+   "↑ Lamotrigine level": {
+    "yes": [
+     "valproate"
+    ],
+    "maybe": []
+   },
+   "Do not combine with MAOI": {
+    "yes": [
+     "fluoxetine",
+     "amitriptyline"
+    ],
+    "maybe": [
+     "ondansetron",
+     "metoclopramide",
+     "lithium",
+     "morphine",
+     "salbutamol",
+     "carbamazepine",
+     "haloperidol",
+     "metoprolol",
+     "diazepam"
+    ]
+   },
+   "Chelation with Ca/Mg/Al/Fe (separate doses)": {
+    "yes": [
+     "doxycycline",
+     "ciprofloxacin",
+     "levothyroxine"
+    ],
+    "maybe": [
+     "azithromycin",
+     "phenytoin",
+     "omeprazole",
+     "gentamicin"
+    ]
+   },
+   "Avoid alcohol": {
+    "yes": [
+     "paracetamol",
+     "diazepam",
+     "morphine",
+     "metformin",
+     "metronidazole"
+    ],
+    "maybe": [
+     "amitriptyline",
+     "haloperidol",
+     "glipizide",
+     "carbamazepine",
+     "phenytoin",
+     "valproate",
+     "warfarin",
+     "aspirin",
+     "ibuprofen",
+     "celecoxib",
+     "fluoxetine",
+     "lithium",
+     "glargine",
+     "ceftriaxone",
+     "atorvastatin",
+     "metoclopramide",
+     "ondansetron",
+     "prednisolone",
+     "doxycycline",
+     "rivaroxaban",
+     "clopidogrel",
+     "metoprolol",
+     "amlodipine",
+     "enalapril",
+     "losartan",
+     "hctz",
+     "furosemide",
+     "spironolactone",
+     "pioglitazone",
+     "empagliflozin",
+     "omeprazole",
+     "smxtmp",
+     "ciprofloxacin",
+     "azithromycin"
+    ]
+   },
+   "Benzodiazepine + opioid → respiratory depression": {
+    "yes": [
+     "diazepam",
+     "morphine"
+    ],
+    "maybe": []
+   },
+   "Severe respiratory insufficiency / sleep apnea": {
+    "yes": [
+     "diazepam",
+     "morphine"
+    ],
+    "maybe": [
+     "metoprolol",
+     "haloperidol",
+     "amitriptyline"
+    ]
+   },
+   "eGFR < 30 mL/min (contraindicated)": {
+    "yes": [
+     "metformin"
+    ],
+    "maybe": [
+     "rivaroxaban",
+     "empagliflozin",
+     "spironolactone",
+     "ibuprofen",
+     "celecoxib",
+     "lithium",
+     "gentamicin",
+     "smxtmp",
+     "glipizide",
+     "hctz",
+     "aspirin",
+     "enalapril",
+     "losartan",
+     "morphine",
+     "vancomycin",
+     "ciprofloxacin",
+     "metoclopramide",
+     "pioglitazone",
+     "heparin",
+     "ceftriaxone",
+     "amoxicillin",
+     "doxycycline"
+    ]
+   },
+   "Hold before iodinated contrast": {
+    "yes": [
+     "metformin"
+    ],
+    "maybe": [
+     "ibuprofen",
+     "celecoxib",
+     "furosemide",
+     "enalapril",
+     "losartan",
+     "empagliflozin",
+     "spironolactone",
+     "hctz"
+    ]
+   },
+   "Heart failure NYHA III–IV": {
+    "yes": [
+     "pioglitazone"
+    ],
+    "maybe": [
+     "ibuprofen",
+     "celecoxib",
+     "metoprolol",
+     "prednisolone",
+     "amitriptyline",
+     "amlodipine",
+     "metformin"
+    ]
+   },
+   "2nd/3rd-degree AV block, severe bradycardia": {
+    "yes": [
+     "metoprolol"
+    ],
+    "maybe": [
+     "lithium",
+     "amitriptyline",
+     "haloperidol",
+     "ondansetron",
+     "phenytoin",
+     "carbamazepine",
+     "azithromycin"
+    ]
+   },
+   "Pheochromocytoma": {
+    "yes": [
+     "metoclopramide",
+     "metoprolol"
+    ],
+    "maybe": [
+     "haloperidol",
+     "amitriptyline",
+     "salbutamol",
+     "ondansetron",
+     "prednisolone",
+     "morphine"
+    ]
+   },
+   "Children with viral illness": {
+    "yes": [
+     "aspirin"
+    ],
+    "maybe": []
+   },
+   "Children < 8 years": {
+    "yes": [
+     "doxycycline"
+    ],
+    "maybe": [
+     "ciprofloxacin"
+    ]
+   },
+   "Children / adolescents (cartilage damage)": {
+    "yes": [
+     "ciprofloxacin"
+    ],
+    "maybe": [
+     "doxycycline"
+    ]
+   },
+   "Active bleeding": {
+    "yes": [
+     "warfarin",
+     "heparin",
+     "aspirin",
+     "clopidogrel",
+     "rivaroxaban"
+    ],
+    "maybe": [
+     "ibuprofen",
+     "celecoxib",
+     "fluoxetine",
+     "prednisolone"
+    ]
+   },
+   "Mechanical heart valve — DOAC not recommended": {
+    "yes": [
+     "rivaroxaban"
+    ],
+    "maybe": []
+   },
+   "Penicillin allergy": {
+    "yes": [
+     "amoxicillin"
+    ],
+    "maybe": [
+     "ceftriaxone"
+    ]
+   },
+   "Neonates receiving IV calcium": {
+    "yes": [
+     "ceftriaxone"
+    ],
+    "maybe": []
+   },
+   "Sulfonamide allergy": {
+    "yes": [
+     "smxtmp",
+     "celecoxib"
+    ],
+    "maybe": [
+     "hctz",
+     "furosemide",
+     "glipizide"
+    ]
+   },
+   "Peri-operative pain after CABG": {
+    "yes": [
+     "celecoxib",
+     "ibuprofen"
+    ],
+    "maybe": [
+     "aspirin"
+    ]
+   },
+   "Asthma (risk of bronchospasm)": {
+    "yes": [
+     "metoprolol",
+     "aspirin",
+     "ibuprofen"
+    ],
+    "maybe": [
+     "celecoxib",
+     "morphine",
+     "paracetamol"
+    ]
+   },
+   "Myasthenia gravis": {
+    "yes": [
+     "gentamicin",
+     "ciprofloxacin",
+     "azithromycin"
+    ],
+    "maybe": [
+     "metoprolol",
+     "lithium",
+     "phenytoin",
+     "doxycycline",
+     "diazepam",
+     "prednisolone",
+     "haloperidol",
+     "amitriptyline",
+     "metronidazole",
+     "carbamazepine"
+    ]
+   },
+   "Narrow therapeutic index (monitor levels)": {
+    "yes": [
+     "lithium",
+     "phenytoin",
+     "warfarin",
+     "gentamicin",
+     "vancomycin",
+     "carbamazepine",
+     "valproate",
+     "levothyroxine"
+    ],
+    "maybe": [
+     "heparin",
+     "glargine",
+     "glipizide"
+    ]
+   },
+   "GI obstruction / perforation": {
+    "yes": [
+     "metoclopramide"
+    ],
+    "maybe": [
+     "morphine",
+     "ondansetron",
+     "amitriptyline"
+    ]
+   },
+   "Parkinson disease (worsens symptoms)": {
+    "yes": [
+     "haloperidol",
+     "metoclopramide"
+    ],
+    "maybe": [
+     "lithium",
+     "valproate",
+     "ondansetron",
+     "fluoxetine",
+     "amitriptyline"
+    ]
+   },
+   "Active liver disease": {
+    "yes": [
+     "atorvastatin",
+     "valproate"
+    ],
+    "maybe": [
+     "paracetamol",
+     "carbamazepine",
+     "pioglitazone",
+     "diazepam",
+     "morphine",
+     "ibuprofen",
+     "celecoxib",
+     "metformin",
+     "rivaroxaban",
+     "azithromycin",
+     "doxycycline",
+     "smxtmp",
+     "ciprofloxacin",
+     "phenytoin",
+     "fluoxetine",
+     "haloperidol",
+     "amitriptyline",
+     "glipizide",
+     "metronidazole",
+     "warfarin",
+     "amoxicillin",
+     "ceftriaxone",
+     "spironolactone",
+     "levothyroxine",
+     "losartan",
+     "omeprazole",
+     "ondansetron",
+     "metoprolol",
+     "lithium",
+     "furosemide",
+     "prednisolone",
+     "clopidogrel",
+     "aspirin",
+     "heparin",
+     "empagliflozin",
+     "amlodipine",
+     "metoclopramide",
+     "enalapril",
+     "hctz",
+     "montelukast"
+    ]
+   },
+   "HLA-B*1502 positive": {
+    "yes": [
+     "carbamazepine",
+     "phenytoin"
+    ],
+    "maybe": [
+     "valproate",
+     "smxtmp",
+     "amoxicillin",
+     "paracetamol",
+     "ibuprofen",
+     "celecoxib"
+    ]
+   },
+   "Recent myocardial infarction": {
+    "yes": [
+     "amitriptyline"
+    ],
+    "maybe": [
+     "celecoxib",
+     "ibuprofen",
+     "levothyroxine",
+     "salbutamol",
+     "haloperidol",
+     "pioglitazone"
+    ]
+   },
+   "Acute angle-closure glaucoma": {
+    "yes": [
+     "amitriptyline",
+     "diazepam"
+    ],
+    "maybe": [
+     "haloperidol",
+     "fluoxetine",
+     "salbutamol",
+     "prednisolone",
+     "metoclopramide",
+     "carbamazepine",
+     "hctz",
+     "ondansetron",
+     "metoprolol",
+     "morphine"
+    ]
+   },
+   "Urinary retention / BPH": {
+    "yes": [
+     "amitriptyline"
+    ],
+    "maybe": [
+     "morphine",
+     "haloperidol",
+     "carbamazepine",
+     "diazepam",
+     "salbutamol",
+     "metoclopramide",
+     "ondansetron"
+    ]
+   }
+  }
+ }
+}
