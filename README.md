@@ -18,4 +18,4 @@
 - หน้าแรก: แตะ "ทบทวนวันนี้" ครั้งเดียว ระบบเลือกการ์ดที่ใกล้ลืม (spaced repetition) + การ์ดใหม่ให้เอง
 - เลือกเอง: ชีววิทยา (Slide 07–13) → ทวนเร็ว / Flash cards / จับคู่
 - ข้อมูลยาถูกปิดไว้ (`INCLUDE_DRUGS = False` ใน `src/build5.py`)
-- สร้างใหม่: `python3 src/build5.py` (template `src/template5.html`, ข้อมูลยา `src/drug_items.py` จาก `drug-quiz/src/drugs.json`)
+- สร้างใหม่: `python3 src/build5.py` (template `src/template6.html`, ข้อมูลยา `src/drug_items.py` จาก `drug-quiz/src/drugs.json`)

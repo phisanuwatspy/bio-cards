@@ -44,7 +44,7 @@ assert len({i['i'] for i in items}) == len(items)
 assert all(len(i['x']) >= 3 for i in items), [i['i'] for i in items if len(i['x']) < 3]
 data = {"decks": decks, "items": items, "drugCount": len(drug['drugs'])}
 js = json.dumps(data, ensure_ascii=False, separators=(',', ':')).replace('</', '<\\/')
-t = (SRC / 'template5.html').read_text(encoding='utf-8').replace('/*DATA*/', js)
+t = (SRC / 'template6.html').read_text(encoding='utf-8').replace('/*DATA*/', js)
 
 art = t.replace('if(g==="drug"){const a=', 'if(false){const a=').replace('<!--PWA-HEAD-->\n', '').replace('<!--PWA-SW-->\n', '')
 Path('/home/claude/index.html').write_text(art, encoding='utf-8')
@@ -60,6 +60,6 @@ head = '''<meta name="theme-color" content="#F6F4F0">
 sw = '<script>if("serviceWorker" in navigator){window.addEventListener("load",function(){navigator.serviceWorker.register("sw.js").catch(function(){})})}</script>\n'
 Path('/home/claude/pwa/index.html').write_text(t.replace('<!--PWA-HEAD-->\n', head).replace('<!--PWA-SW-->\n', sw), encoding='utf-8')
 s = Path('/home/claude/pwa/sw.js').read_text()
-Path('/home/claude/pwa/sw.js').write_text(re.sub(r'const VERSION = "biocards-v\d+";', 'const VERSION = "biocards-v7";', s))
+Path('/home/claude/pwa/sw.js').write_text(re.sub(r'const VERSION = "biocards-v\d+";', 'const VERSION = "biocards-v8";', s))
 from collections import Counter
 print(len(items), "items", Counter(DECK['g'] for DECK in decks), len(art) // 1024, "KB")
