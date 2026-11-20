@@ -49,21 +49,23 @@ mark{background:#FFE7A3;color:inherit;border-radius:4px;padding:0 2px}
 .icon:active{background:#EEEAE4}
 .greet{font-size:25px;margin:8px 0 14px}
 .date{color:var(--muted);margin:0 0 16px;font-size:14.5px}
-.hero{position:relative;display:flex;align-items:center;gap:14px;width:100%;text-align:left;padding:20px 18px;border-radius:26px;color:#fff;background:linear-gradient(135deg,var(--acc2) 0%,var(--acc) 70%);box-shadow:0 14px 30px -16px rgba(232,97,60,.75);overflow:hidden}
-.hero::after{content:"";position:absolute;right:-40px;top:-50px;width:170px;height:170px;border-radius:50%;background:rgba(255,255,255,.12)}
+.hero{position:relative;display:flex;align-items:center;gap:14px;width:100%;text-align:left;padding:12px 14px;border-radius:20px;color:#fff;background:linear-gradient(135deg,var(--acc2) 0%,var(--acc) 70%);box-shadow:0 10px 22px -14px rgba(232,97,60,.75);overflow:hidden}
+.hero::after{content:"";position:absolute;right:-30px;top:-40px;width:120px;height:120px;border-radius:50%;background:rgba(255,255,255,.12)}
 .hero .ht{flex:1;min-width:0;position:relative;z-index:1}
-.hero .hl{display:block;font:700 24px/1.25 Anuphan,sans-serif}
-.hero .hs{display:block;font-size:14.5px;opacity:.92;margin-top:4px;line-height:1.4}
+.hero .hl{display:block;font:700 18.5px/1.25 Anuphan,sans-serif}
+.hero .hs{display:block;font-size:13.5px;opacity:.92;margin-top:1px;line-height:1.35}
+.hero .play{flex:none;width:42px;height:42px;border-radius:99px;background:#fff;color:var(--acc);display:grid;place-items:center;position:relative;z-index:1}
+.hero .play svg{margin-left:2px}
 .hero .go{display:inline-flex;align-items:center;gap:6px;margin-top:12px;background:#fff;color:var(--acc);font:700 15.5px/1 Anuphan,sans-serif;padding:10px 16px;border-radius:99px}
-.ring{position:relative;flex:none;width:86px;height:86px;z-index:1}
+.ring{position:relative;flex:none;width:56px;height:56px;z-index:1}
 .ring svg{display:block;transform:rotate(-90deg)}
-.ring .rv{position:absolute;inset:0;display:grid;place-items:center;text-align:center;font:600 16px/1.1 "IBM Plex Mono",monospace}
-.ring .rv small{display:block;font:500 11px/1.2 "IBM Plex Sans Thai",sans-serif;opacity:.9}
+.ring .rv{position:absolute;inset:0;display:grid;place-items:center;text-align:center;font:600 14px/1 "IBM Plex Mono",monospace}
+.ring .rv small{display:block;font:600 10px/1.2 "IBM Plex Mono",monospace;opacity:.85;margin-top:1px}
 .ring circle{transition:stroke-dashoffset .9s var(--ease)}
 .lsh{display:flex;justify-content:space-between;align-items:center;gap:8px;margin:18px 2px 10px}
-.mseg{display:flex;gap:2px;padding:3px;border-radius:12px;background:#ECE8E2}
-.mseg button{padding:7px 11px;border-radius:9px;font:600 13.5px/1.2 Anuphan,sans-serif;color:var(--muted);transition:background .2s,color .2s}
-.mseg button[aria-pressed="true"]{background:#fff;color:var(--ink);box-shadow:0 1px 3px rgba(0,0,0,.08)}
+.mseg{display:grid;grid-template-columns:repeat(3,1fr);gap:4px;padding:4px;border-radius:18px;background:#ECE8E2;margin:18px 0 12px}
+.mseg button{padding:13px 6px;border-radius:14px;font:700 16.5px/1.2 Anuphan,sans-serif;color:var(--muted);transition:background .2s,color .2s}
+.mseg button[aria-pressed="true"]{background:#fff;color:var(--ink);box-shadow:0 2px 6px rgba(0,0,0,.1)}
 .chap{display:grid;grid-template-columns:1fr 1fr;gap:8px}
 .ch{display:grid;grid-template-columns:38px 1fr;column-gap:10px;align-items:center;text-align:left;padding:11px 12px;border-radius:18px;background:#fff;border:1px solid var(--line);min-height:66px}
 .ch .no{grid-row:1/3;width:38px;height:38px;border-radius:12px;display:grid;place-items:center;background:var(--tc);color:#fff;font:600 13.5px/1 "IBM Plex Mono",monospace}
@@ -269,7 +271,6 @@ mark{background:#FFE7A3;color:inherit;border-radius:4px;padding:0 2px}
   #mphone{display:none}
   .greet{font-size:30px}
   .chap{grid-template-columns:repeat(4,1fr)}
-  .hero{padding:26px 24px}
   .stile{min-height:170px}
   .qq{font-size:24px}
   .fcard{max-height:620px;align-self:center;height:100%}
@@ -277,7 +278,7 @@ mark{background:#FFE7A3;color:inherit;border-radius:4px;padding:0 2px}
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation:none!important;transition:none!important}
 }
-@media (max-height:620px){.greet{font-size:22px;margin:4px 0 10px}.hero{padding:15px 16px}.hero .go{margin-top:9px}.ring{width:72px;height:72px}.ring svg{width:72px;height:72px}.ch{min-height:58px;padding:9px 11px}.lsh{margin:14px 2px 8px}}
+@media (max-height:620px){.greet{font-size:22px;margin:4px 0 10px}.mseg{margin:14px 0 10px}.mseg button{padding:11px 6px}.ch{min-height:58px;padding:9px 11px}}
 @media (max-width:370px){.qq{font-size:19px}.opt{font-size:15px}.acard{font-size:14px}.greet{font-size:24px}}
 </style>
 </head>
@@ -296,20 +297,15 @@ mark{background:#FFE7A3;color:inherit;border-radius:4px;padding:0 2px}
   <h1 class="greet" id="greet"></h1>
 
   <button class="hero press" id="hero">
-    <span class="ht">
-      <span class="hl">ทบทวนวันนี้</span>
-      <span class="hs" id="heroSub"></span>
-      <span class="go"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4.5v15l13-7.5z"/></svg><span id="heroGo">เริ่มเลย</span></span>
-    </span>
+    <span class="play" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M7 4.5v15l13-7.5z"/></svg></span>
+    <span class="ht"><span class="hl">ทบทวนวันนี้</span><span class="hs" id="heroSub"></span></span>
     <span class="ring" aria-hidden="true">
-      <svg width="86" height="86" viewBox="0 0 86 86"><circle cx="43" cy="43" r="36" fill="none" stroke="rgba(255,255,255,.28)" stroke-width="8"/><circle id="ringArc" cx="43" cy="43" r="36" fill="none" stroke="#fff" stroke-width="8" stroke-linecap="round" stroke-dasharray="226.2" stroke-dashoffset="226.2"/></svg>
-      <span class="rv"><span><span id="ringN">0</span><small id="ringOf">จาก 20</small></span></span>
+      <svg width="56" height="56" viewBox="0 0 86 86"><circle cx="43" cy="43" r="36" fill="none" stroke="rgba(255,255,255,.28)" stroke-width="9"/><circle id="ringArc" cx="43" cy="43" r="36" fill="none" stroke="#fff" stroke-width="9" stroke-linecap="round" stroke-dasharray="226.2" stroke-dashoffset="226.2"/></svg>
+      <span class="rv"><span><span id="ringN">0</span><small id="ringOf">/20</small></span></span>
     </span>
   </button>
 
-  <div class="lsh"><h2>เลือกบท</h2>
-    <div class="mseg" id="homeSeg" role="group" aria-label="วิธีทบทวน"><button data-m="quick">ทวนเร็ว</button><button data-m="flash">Flash</button><button data-m="match">จับคู่</button></div>
-  </div>
+  <div class="mseg" id="homeSeg" role="group" aria-label="วิธีทบทวน"><button data-m="quick">ทวนเร็ว</button><button data-m="flash">Flash cards</button><button data-m="match">จับคู่</button></div>
   <div class="chap" id="chap"></div>
  </div></div>
 </section>
@@ -517,8 +513,7 @@ function renderHome(){
   const st=streakNow();$("streakN").textContent=st;$("streak").classList.toggle("off",!st);
   const {due,fresh}=dailyCounts(),dn=doneToday();
   $("heroSub").textContent=due?(due+" ใบที่ใกล้ลืม"+(fresh?" · ใบใหม่ "+fresh:"")):(dn?"วันนี้ทวนไปแล้ว "+dn+" ใบ · ไปต่ออีกนิด":"เริ่มด้วยการ์ดใหม่ "+Math.min(PREF.len,8)+" ใบ");
-  $("heroGo").textContent=dn?"ทวนต่อ":"เริ่มเลย";
-  $("ringN").textContent=Math.min(dn,PREF.goal);$("ringOf").textContent="จาก "+PREF.goal;
+  $("ringN").textContent=Math.min(dn,PREF.goal);$("ringOf").textContent="/"+PREF.goal;
   requestAnimationFrame(()=>setRing($("ringArc"),dn/PREF.goal,226.2));
   document.querySelectorAll("#homeSeg button").forEach(b=>{b.setAttribute("aria-pressed",String(b.dataset.m===PREF.mode));b.onclick=()=>{PREF.mode=b.dataset.m;savePref();buzz(6);renderHome()}});
   const box=$("chap");box.innerHTML="";
