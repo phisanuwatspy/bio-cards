@@ -585,7 +585,7 @@ function startPool(pool,title,key){
   store.set("bc-last",null);
   const mode=PREF.mode;
   if(mode==="quick")startQuick(buildSet(pool,PREF.len,PREF.len),{title,again:()=>startPool(pool,title,key)});
-  else if(mode==="flash")startFlash(buildSet(pool,Math.max(PREF.len,20),99),{title,again:()=>startPool(pool,title,key)});
+  else if(mode==="flash")startFlash(buildSet(pool,FLASH_N,FLASH_N),{title,again:()=>startPool(pool,title,key)});
   else startMatch(pool,{title,again:()=>startPool(pool,title,key)});
 }
 function startDeck(id,secs,mode){
@@ -596,7 +596,7 @@ function startDeck(id,secs,mode){
   const title=d.short+(secs?" · "+secs.size+" หัวข้อ":"");
   const again=()=>startDeck(id,secs,mode);
   if(mode==="quick")startQuick(buildSet(pool,PREF.len,PREF.len),{title,again});
-  else if(mode==="flash")startFlash(buildSet(pool,Math.max(PREF.len,20),99),{title,again});
+  else if(mode==="flash")startFlash(buildSet(pool,FLASH_N,FLASH_N),{title,again});
   else startMatch(pool,{title,again});
 }
 
@@ -704,6 +704,7 @@ $("qMid").addEventListener("click",e=>{ // tap empty space after a correct answe
 });
 
 /* ---------- FLASH CARDS ---------- */
+const MATCH_N=60,FLASH_N=80;
 let F=null;
 function startFlash(items,meta){
   if(!items.length)return;
@@ -828,26 +829,34 @@ function pickDecoys(items,k){
 function startMatch(pool,meta){
   // weakest / due first so matching also feeds spaced repetition
   const ordered=shuffle(pool).sort((a,b)=>(isDue(a.i)?0:1)-(isDue(b.i)?0:1)||(SRS[a.i]?SRS[a.i][0]:-1)-(SRS[b.i]?SRS[b.i][0]:-1));
-  MD={items:ordered,used:new Set(),meta,round:0};
+  MD={items:ordered,used:new Set(),meta,round:0,target:Math.min(MATCH_N,pool.length),done:0,all:[],missed:new Map(),best:0,combo:0,t0:Date.now()};
   nextRound();
 }
 function nextRound(){
-  const n=isPhone()?4:6;
+  const n=Math.min(isPhone()?4:6,MD.target-MD.done);
+  if(n<=0)return finish("match");
   let items=drawRound(n);
-  if(items.length<3){MD.used.clear();MD.items=shuffle(MD.items);items=drawRound(n)}
-  if(!items.length)return toHome();
+  if(!items.length){MD.used.clear();MD.items=shuffle(MD.items);items=drawRound(n)}
+  if(!items.length)return finish("match");
   items.forEach(it=>MD.used.add(it.i));MD.round++;
   const decoys=pickDecoys(items,Math.ceil(items.length/2)),qOrder=shuffle(items);
   M={items,decoys,qOrder,ans:shuffle(items.map(it=>({id:it.i,t:it.a})).concat(decoys.map((d,i)=>({id:"decoy-"+i,t:d})))),
-     matched:new Set(),order:new Map(),cur:qOrder[0].i,sel:null,miss:0,combo:0,best:0,missed:new Map(),busy:false,end:null,fb:null,t0:Date.now()};
+     matched:new Set(),order:new Map(),cur:qOrder[0].i,sel:null,miss:0,combo:MD.combo,best:0,missed:new Map(),busy:false,end:null,fb:null,t0:Date.now()};
   show("match");
   document.documentElement.style.setProperty("--c",deckColor(items[0].d));
-  $("mMeta").textContent=MD.meta.title+" · รอบ "+MD.round+" · ตัวหลอก "+decoys.length+" ใบ";
+  $("mMeta").textContent=MD.meta.title+" · ตัวหลอก "+decoys.length+" ใบ";
   renderMatch();
 }
+function roundDone(){
+  M.items.forEach(it=>grade(it.i,!M.missed.has(it.i)));
+  M.missed.forEach((v,k)=>MD.missed.set(k,v));
+  MD.done+=M.items.length;MD.all.push(...M.items);
+  setTimeout(()=>MD.done>=MD.target?finish("match"):nextRound(),MD.done>=MD.target?650:700);
+}
 function renderMatch(){
-  $("mCount").textContent=M.matched.size+"/"+M.items.length;
-  $("mBar").style.width=(M.matched.size/M.items.length*100)+"%";
+  const dn=MD.done+M.matched.size;
+  $("mCount").textContent=dn+"/"+MD.target;
+  $("mBar").style.width=(dn/MD.target*100)+"%";
   isPhone()?renderMPhone():renderMDesk();
 }
 function renderMPhone(){
@@ -903,9 +912,10 @@ function mcheck(qid,aid){
     M.fb={kind:"ok",head:"✓ ถูกต้อง",short:"✓ "+it.a,body:it.e?rich(it.e):esc(it.a)};
     const nq=M.qOrder.find(x=>!M.matched.has(x.i));if(nq)M.cur=nq.i;
     renderMatch();
-    if(M.matched.size===M.items.length){M.end="win";setTimeout(()=>finish("match"),650)}
+    MD.combo=M.combo;MD.best=Math.max(MD.best,M.combo);
+    if(M.matched.size===M.items.length){M.end="win";roundDone()}
   }else{
-    M.miss++;M.combo=0;comboUI($("mCombo"),0);M.missed.set(qid,it);
+    M.miss++;M.combo=0;MD.combo=0;comboUI($("mCombo"),0);M.missed.set(qid,it);
     const other=BY.get(aid);if(other&&M.items.includes(other))M.missed.set(other.i,other);
     buzz([30,50,30]);
     M.fb={kind:"bad",head:"✗ ยังไม่ใช่",short:"✗ ยังไม่ใช่ ลองใหม่",body:"ลองอ่านคำถามอีกครั้ง"};
@@ -934,8 +944,7 @@ function finish(kind){
   if(kind==="quick"){total=Q.total;ok=Q.ok;missed=[...Q.missed.values()];items=[...new Set(Q.all)];meta=Q.meta;again=meta.again;best=Q.best;extra=Math.round((Date.now()-Q.t0)/1000)}
   else if(kind==="flash"){total=F.total;ok=F.total-F.no.size;missed=[...F.no.values()];items=F.hist.filter((x,i,a)=>a.indexOf(x)===i);meta=F.meta;again=meta.again}
   else{
-    M.items.forEach(it=>grade(it.i,!M.missed.has(it.i)));
-    total=M.items.length;ok=total-M.missed.size;missed=[...M.missed.values()];items=M.items;meta=MD.meta;again=()=>nextRound();best=M.best;extra=Math.round((Date.now()-M.t0)/1000);
+    total=MD.all.length;ok=total-MD.missed.size;missed=[...MD.missed.values()];items=MD.all;meta=MD.meta;again=meta.again;best=MD.best;extra=Math.round((Date.now()-MD.t0)/1000);
   }
   show("done");
   const pct=total?Math.round(ok/total*100):0;
@@ -949,8 +958,8 @@ function finish(kind){
   $("dStats").innerHTML=[["ถูกรอบแรก",ok+"/"+total],[kind==="flash"?"วันนี้":"ต่อเนื่องสูงสุด",kind==="flash"?dn+" ใบ":"×"+best],["เป้าวันนี้",Math.min(dn,PREF.goal)+"/"+PREF.goal]].map(([a,b])=>'<div><span>'+a+'</span><b>'+b+'</b></div>').join("");
   const acts=$("dActs");acts.innerHTML="";
   const add=(t,cls,fn)=>{const b=document.createElement("button");b.className="btn full press "+cls;b.textContent=t;b.onclick=fn;acts.appendChild(b);return b};
-  add(kind==="match"?"รอบต่อไป":"ทวนต่ออีกรอบ","acc",again).focus({preventScroll:true});
-  if(missed.length&&kind!=="match")add("ทวนเฉพาะข้อที่พลาด ("+missed.length+")","ghost",()=>startQuick(shuffle(missed),{title:"ข้อที่พลาด",again:()=>startQuick(shuffle(missed),{title:"ข้อที่พลาด",again})}));
+  add("เล่นอีกรอบ","acc",again).focus({preventScroll:true});
+  if(missed.length)add("ทวนเฉพาะข้อที่พลาด ("+missed.length+")","ghost",()=>startQuick(shuffle(missed),{title:"ข้อที่พลาด",again:()=>startQuick(shuffle(missed),{title:"ข้อที่พลาด",again})}));
   add("กลับหน้าแรก","ghost",toHome);
   const good=items.filter(x=>!missed.includes(x));
   $("dRv").innerHTML=(missed.length?'<div class="rvh"><h3>ข้อที่ควรทวน</h3></div>'+missed.map(x=>rvItem(x,false)).join(""):"")+

@@ -1,5 +1,5 @@
 // Offline cache for Bio Cards. Bump VERSION when index.html changes.
-const VERSION = "biocards-v11";
+const VERSION = "biocards-v12";
 const SHELL = ["./", "index.html", "manifest.webmanifest", "icon-192.png", "icon-512.png", "apple-touch-icon.png"];
 
 self.addEventListener("install", e => {

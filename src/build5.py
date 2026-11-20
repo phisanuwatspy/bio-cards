@@ -14,6 +14,13 @@ BADGE = {"cv": "CV", "heme": "HEM", "endo": "END", "inf": "INF", "cns": "CNS", "
 
 decks, items = [], []
 pairs = json.load(open(SRC / 'pairs2.json', encoding='utf-8'))
+import sys; sys.path.insert(0, str(SRC))
+from extra_v9 import sec13
+NEWBANK = json.load(open(SRC / 'newbank_clean.json', encoding='utf-8'))
+EXTRA = json.load(open(SRC / 'extra_v9.json', encoding='utf-8'))
+SKIP = {'13:16'}
+missing = [b['k'] for L in NEWBANK.values() for b in L if b['k'] not in SKIP and b['k'] not in EXTRA['tricks']]
+assert not missing, missing
 for tid, c, en, th in BIO:
     decks.append({"id": tid, "g": "bio", "name": en, "sub": th, "c": c, "badge": tid, "short": "Slide " + tid})
     if tid == "13":
@@ -24,6 +31,13 @@ for tid, c, en, th in BIO:
     deck_items = []
     for it, m, n in rows:
         deck_items.append({"i": f"{tid}-{n}", "d": tid, "s": it['s'], "q": it['q'], "a": it['a'], "x": list(it['x']), "e": it['e'], "m": m, "k": "t"})
+    # v9: extra cards from the updated exam bank + hand-written cards (see extra_v9.py)
+    for bi in NEWBANK.get(tid, []):
+        if bi['k'] in SKIP: continue
+        sec = sec13(bi) if tid == '13' else bi['s']
+        deck_items.append({"i": f"{tid}-b{bi['k'].split(':')[1]}", "d": tid, "s": sec, "q": bi['q'], "a": bi['a'], "x": bi['x'], "e": bi['e'], "m": EXTRA['tricks'][bi['k']], "k": "t"})
+    for j, ai in enumerate(EXTRA['authored'].get(tid, [])):
+        deck_items.append({"i": f"{tid}-a{j}", "d": tid, "s": ai['s'], "q": ai['q'], "a": ai['a'], "x": ai['x'], "e": ai['e'], "m": ai['m'], "k": "t"})
     # every card needs 3 wrong options for the one-tap quiz
     for it in deck_items:
         if len(it['x']) >= 3: continue
@@ -60,6 +74,6 @@ head = '''<meta name="theme-color" content="#F6F4F0">
 sw = '<script>if("serviceWorker" in navigator){window.addEventListener("load",function(){navigator.serviceWorker.register("sw.js").catch(function(){})})}</script>\n'
 Path('/home/claude/pwa/index.html').write_text(t.replace('<!--PWA-HEAD-->\n', head).replace('<!--PWA-SW-->\n', sw), encoding='utf-8')
 s = Path('/home/claude/pwa/sw.js').read_text()
-Path('/home/claude/pwa/sw.js').write_text(re.sub(r'const VERSION = "biocards-v\d+";', 'const VERSION = "biocards-v11";', s))
+Path('/home/claude/pwa/sw.js').write_text(re.sub(r'const VERSION = "biocards-v\d+";', 'const VERSION = "biocards-v12";', s))
 from collections import Counter
-print(len(items), "items", Counter(DECK['g'] for DECK in decks), len(art) // 1024, "KB")
+from collections import Counter as C2; print(C2(i['d'] for i in items)); print(len(items), "items", Counter(DECK['g'] for DECK in decks), len(art) // 1024, "KB")
