@@ -74,6 +74,6 @@ head = '''<meta name="theme-color" content="#F6F4F0">
 sw = '<script>if("serviceWorker" in navigator){window.addEventListener("load",function(){navigator.serviceWorker.register("sw.js").catch(function(){})})}</script>\n'
 Path('/home/claude/pwa/index.html').write_text(t.replace('<!--PWA-HEAD-->\n', head).replace('<!--PWA-SW-->\n', sw), encoding='utf-8')
 s = Path('/home/claude/pwa/sw.js').read_text()
-Path('/home/claude/pwa/sw.js').write_text(re.sub(r'const VERSION = "biocards-v\d+";', 'const VERSION = "biocards-v12";', s))
+Path('/home/claude/pwa/sw.js').write_text(re.sub(r'const VERSION = "biocards-v\d+";', 'const VERSION = "biocards-v13";', s))
 from collections import Counter
 from collections import Counter as C2; print(C2(i['d'] for i in items)); print(len(items), "items", Counter(DECK['g'] for DECK in decks), len(art) // 1024, "KB")
