@@ -34,10 +34,11 @@ for tid, c, en, th in BIO:
             if not bad(o): it['x'].append(o)
     items += deck_items
 
+INCLUDE_DRUGS = False
 drug = json.load(open('/home/claude/bio-cards/drug-quiz/src/drugs.json', encoding='utf-8'))
-for c in drug['categories']:
+for c in (drug['categories'] if INCLUDE_DRUGS else []):
     decks.append({"id": "d-" + c['id'], "g": "drug", "name": c['name'], "sub": c['th'], "c": c['color'], "badge": BADGE.get(c['id'], c['id'].upper()), "short": c['name']})
-items += json.load(open(SRC / 'drug_items.json', encoding='utf-8'))
+if INCLUDE_DRUGS: items += json.load(open(SRC / 'drug_items.json', encoding='utf-8'))
 
 assert len({i['i'] for i in items}) == len(items)
 assert all(len(i['x']) >= 3 for i in items), [i['i'] for i in items if len(i['x']) < 3]
@@ -59,6 +60,6 @@ head = '''<meta name="theme-color" content="#F6F4F0">
 sw = '<script>if("serviceWorker" in navigator){window.addEventListener("load",function(){navigator.serviceWorker.register("sw.js").catch(function(){})})}</script>\n'
 Path('/home/claude/pwa/index.html').write_text(t.replace('<!--PWA-HEAD-->\n', head).replace('<!--PWA-SW-->\n', sw), encoding='utf-8')
 s = Path('/home/claude/pwa/sw.js').read_text()
-Path('/home/claude/pwa/sw.js').write_text(re.sub(r'const VERSION = "biocards-v\d+";', 'const VERSION = "biocards-v6";', s))
+Path('/home/claude/pwa/sw.js').write_text(re.sub(r'const VERSION = "biocards-v\d+";', 'const VERSION = "biocards-v7";', s))
 from collections import Counter
 print(len(items), "items", Counter(DECK['g'] for DECK in decks), len(art) // 1024, "KB")

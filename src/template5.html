@@ -63,6 +63,11 @@ mark{background:#FFE7A3;color:inherit;border-radius:4px;padding:0 2px}
 .lsh{display:flex;justify-content:space-between;align-items:baseline;margin:22px 2px 10px}
 .lsh h2{font-size:15px;color:var(--muted);font-weight:600}
 .subj{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.subj.one{grid-template-columns:1fr}
+.subj.one .stile{display:grid;grid-template-columns:44px 1fr;column-gap:14px;row-gap:3px;align-items:center;min-height:0;padding:16px 18px}
+.subj.one .stile .si{grid-row:1/4}
+.subj.one .stile small{margin-top:0}
+.subj.one .stile .mbar{margin-top:6px}
 .stile{display:flex;flex-direction:column;align-items:flex-start;gap:10px;text-align:left;padding:16px;border-radius:22px;background:#fff;border:1px solid var(--line);min-height:150px}
 .stile .si{width:44px;height:44px;border-radius:14px;display:grid;place-items:center}
 .stile b{font:700 18px/1.25 Anuphan,sans-serif}
@@ -517,7 +522,7 @@ function renderHome(){
   $("heroGo").textContent=dn?"ทวนต่อ":"เริ่มเลย";
   $("ringN").textContent=Math.min(dn,PREF.goal);$("ringOf").textContent="จาก "+PREF.goal;
   requestAnimationFrame(()=>setRing($("ringArc"),dn/PREF.goal,226.2));
-  [["bio","bioSub","bioBar"],["drug","drugSub","drugBar"]].forEach(([g,sub,bar])=>{
+  [["bio","bioSub","bioBar"],["drug","drugSub","drugBar"]].filter(([g])=>ofGroup(g).length).forEach(([g,sub,bar])=>{
     const its=ofGroup(g),m=its.filter(x=>mastered(x.i)).length,n=DECKS.filter(d=>d.g===g).length;
     $(sub).textContent=(g==="bio"?n+" บท":n+" หมวด · "+DATA.drugCount+" ตัวยา")+" · จำได้ "+Math.round(m/its.length*100)+"%";
     requestAnimationFrame(()=>{$(bar).style.width=(m/its.length*100)+"%"});
@@ -536,6 +541,7 @@ $("hero").onclick=()=>{
   const set=buildSet(ITEMS,n,due>=n?0:8);
   startQuick(set,{title:"ทบทวนวันนี้",again:()=>$("hero").onclick()});
 };
+if(!DECKS.some(d=>d.g==="drug")){document.querySelector('.stile[data-g="drug"]').remove();document.querySelector(".subj").classList.add("one")}
 document.querySelectorAll(".stile").forEach(b=>b.onclick=()=>openDeckSheet(b.dataset.g));
 
 /* ---------- SHEETS ---------- */
