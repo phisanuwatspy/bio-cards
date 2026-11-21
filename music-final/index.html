@@ -139,6 +139,8 @@ section.lesson.on{display:block}
 .star{display:inline-block;background:var(--acc2);color:#fff;font-size:12.5px;font-weight:700;border-radius:999px;padding:1px 10px;margin:0 0 6px;letter-spacing:.02em}
 .card.hl{border:2px solid var(--acc2);box-shadow:0 0 0 4px rgba(217,164,65,.14)}
 .tile.hl{border:2px solid var(--acc2)}
+u.red{text-decoration:none;border-bottom:3px solid var(--bad);padding-bottom:1px;font-weight:700}
+.star.r{background:var(--bad)}
 mark{background:#F6DFA8;color:inherit;border-radius:4px;padding:0 3px}
 .flash{animation:flash 1.6s ease}
 @keyframes flash{0%,40%{box-shadow:0 0 0 6px rgba(217,164,65,.55)}100%{box-shadow:0 0 0 4px rgba(217,164,65,.14)}}
@@ -168,7 +170,7 @@ mark{background:#F6DFA8;color:inherit;border-radius:4px;padding:0 3px}
 <!-- ================= STAR ================= -->
 <section class="lesson on" id="star">
   <div class="card hl">
-    <h2>★ จุดเน้นที่จดดอกจันไว้</h2>
+    <h2>★ จุดเน้น · ดอกจัน + ขีดเส้นแดง</h2>
     <p class="sub">อ่านหน้านี้ก่อน · แตะ "ไปที่บทเรียน" เพื่อดูแอนิเมชัน</p>
     <div class="sgrid" id="starGrid"></div>
   </div>
@@ -461,8 +463,8 @@ ENS.forEach(e=>{const d=document.createElement('div');d.className='ens';d.innerH
 /* ---------- 3 instruments ---------- */
 const FAM={
  S:{n:'String',th:'เครื่องสาย',g:[['★ สี · ใช้คันชัก','<mark>Violin · Viola · Cello · Double bass</mark>'],['ดีด','Guitar · Harp · Mandolin · Ukulele']],tr:'Marimba ไม่ใช่ String — อยู่ Percussion'},
- W:{n:'Woodwind',th:'เครื่องลมไม้',g:[['ไม่มีลิ้น','Flute · Piccolo · Recorder'],['ลิ้นเดี่ยว · Single reed','Clarinet · Saxophone'],['ลิ้นคู่ · Double reed','Oboe · Bassoon · English horn / Cor anglais']],tr:'Saxophone และ Flute ทำจากโลหะ แต่เป็น <b>Woodwind</b> — ดูที่วิธีทำให้เกิดเสียง ไม่ใช่วัสดุ'},
- B:{n:'Brass',th:'เครื่องลมทองเหลือง',g:[['เป่าผ่านปากเป่า · Mouthpiece','Trumpet · Cornet · Trombone · Euphonium · Tuba · Sousaphone · Bugle · French horn']],tr:'Euphonium = Brass รูปร่างคล้าย Tuba ขนาดเล็ก'},
+ W:{n:'Woodwind',th:'เครื่องลมไม้',g:[['ไม่มีลิ้น','Flute · Piccolo · Recorder'],['ลิ้นเดี่ยว · Single reed','Clarinet · Saxophone'],['★ ลิ้นคู่ · Double reed · ขีดเส้นแดง','<u class="red">Oboe · Bassoon · English horn / Cor anglais</u>']],tr:'★ Oboe · Bassoon · English horn = ลิ้นคู่ · Cor anglais คือชื่อเดียวกับ English horn<br>Saxophone และ Flute ทำจากโลหะ แต่เป็น <b>Woodwind</b> — ดูที่วิธีทำให้เกิดเสียง ไม่ใช่วัสดุ'},
+ B:{n:'Brass',th:'เครื่องลมทองเหลือง',g:[['เป่าผ่านปากเป่า · Mouthpiece','<u class="red">Euphonium ★</u> · Trumpet · Cornet · Trombone · Tuba · Sousaphone · Bugle · French horn']],tr:'★ Euphonium = Brass รูปร่างคล้าย Tuba ขนาดเล็ก · อย่าสับสนกับ Woodwind'},
  K:{n:'Keyboard',th:'เครื่องลิ่มนิ้ว',g:[['','<mark>Harpsichord ★</mark> · Organ · Piano · Accordion · Harmonica']],tr:'★ Harpsichord = Keyboard ยุค Baroque ใช้กลไก "ดีด" สาย · Piano ใช้ค้อน "ตี" สาย'},
  P:{n:'Percussion',th:'เครื่องกระทบ',g:[['มีระดับเสียง','Marimba · Xylophone · Tubular bell · Timpani'],['ไม่มีระดับเสียง','Bongo · Drumset · Cymbal · Snare drum']],tr:'Marimba มีลิ่มไม้ แต่ใช้ไม้ตี → Percussion'}
 };
@@ -559,6 +561,10 @@ const Q=[
 ['เครื่องดนตรีสากล','Saxophone จัดอยู่กลุ่มใด','Woodwind','Brass','Percussion','Keyboard','ทำจากโลหะ แต่ใช้ลิ้นเดี่ยว จึงเป็น Woodwind'],
 ['เครื่องดนตรีสากล','Euphonium จัดอยู่กลุ่มใด','Brass','Woodwind','String','Percussion','Euphonium เป่าผ่าน Mouthpiece = Brass'],
 ['เครื่องดนตรีสากล','Oboe · Bassoon · English horn อยู่กลุ่มใด','Woodwind','Brass','String','Keyboard','ทั้งสามเป็นลิ้นคู่ Double reed'],
+['เครื่องดนตรีสากล','ข้อใดเป็นเครื่องลิ้นคู่ทั้งหมด','Oboe Bassoon English horn','Clarinet Saxophone Flute','Trumpet Trombone Euphonium','Flute Piccolo Recorder','ลิ้นคู่ Double reed = Oboe · Bassoon · English horn'],
+['เครื่องดนตรีสากล','Cor anglais คือเครื่องดนตรีชนิดใด','English horn','French horn','Euphonium','Bassoon','Cor anglais = English horn เป็น Woodwind ลิ้นคู่'],
+['เครื่องดนตรีสากล','English horn จัดอยู่กลุ่มใด','Woodwind','Brass','String','Keyboard','ชื่อมี horn แต่เป็น Woodwind ลิ้นคู่'],
+['เครื่องดนตรีสากล','ข้อใดเป็นเครื่อง Brass ทั้งหมด','Euphonium Trombone Trumpet','Euphonium Oboe Trumpet','Saxophone Trombone Bassoon','Flute Tuba Clarinet','Euphonium อยู่ Brass · Oboe Saxophone Bassoon เป็น Woodwind'],
 ['เครื่องดนตรีสากล','Marimba จัดอยู่กลุ่มใด','Percussion','Keyboard','String','Woodwind','ใช้ไม้ตีลิ่มไม้ = Percussion'],
 ['เครื่องดนตรีสากล','Accordion และ Harmonica จัดอยู่กลุ่มใด','Keyboard','Woodwind','Brass','Percussion','ตามสไลด์อยู่กลุ่ม Keyboard'],
 ['เครื่องดนตรีสากล','Mandolin และ Ukulele จัดอยู่กลุ่มใด','String','Percussion','Keyboard','Woodwind','เครื่องสายแบบดีด'],
@@ -595,7 +601,7 @@ const Q=[
 ['ประวัติดนตรีตะวันตก','Bach อยู่ในยุคใด','Baroque','Classic','Romantic','ร่วมสมัย','Bach = Baroque'],
 ['ประวัติดนตรีตะวันตก','ข้อใดเรียงยุคดนตรีตะวันตกถูกต้อง','Baroque → Classic → Romantic','Classic → Baroque → Romantic','Romantic → Classic → Baroque','Baroque → Romantic → Classic','จำ B-C-R ตามตัวอักษร']
 ];
-const STARRE=/กระจับปี่|ฉิ่ง|ชั้น|Harpsichord|Quartet|Quintet|Octet|คันชัก/;
+const STARRE=/กระจับปี่|ฉิ่ง|ชั้น|Harpsichord|Quartet|Quintet|Octet|คันชัก|Euphonium|Oboe|Bassoon|English horn|Cor anglais/;
 Q.forEach(q=>q.star=STARRE.test(q.slice(1,7).join(' ')));
 const QS=Q.filter(q=>q.star);
 let qs=[],qi=0,qScore=0,wrongs=[];
@@ -620,10 +626,12 @@ const STARS=[
  {t:'inst',id:'s-fam',h:'ดนตรีสากล ★★★',d:'5 กลุ่ม: String · Woodwind · Brass · Keyboard · Percussion',x:'S W B K P + R = Rhythm'},
  {t:'inst',id:'s-fam',f:'S',h:'เครื่องสาย String แบบสี',d:'Violin · Viola · Cello · Double bass ใช้คันชักสี',x:'แบบดีด: Guitar Harp Mandolin Ukulele'},
  {t:'inst',id:'s-fam',f:'K',h:'Harpsichord',d:'Keyboard ยุค Baroque · กลไก "ดีด" สาย',x:'Piano ใช้ค้อน "ตี" สาย → นิยมยุค Classic'},
+ {t:'inst',id:'s-fam',f:'W',h:'ลิ้นคู่ Double reed',d:'Oboe · Bassoon · English horn = Woodwind',x:'English horn ชื่อเรียกอีกชื่อ = Cor anglais',r:1},
+ {t:'inst',id:'s-fam',f:'B',h:'Euphonium',d:'อยู่กลุ่ม Brass เป่าผ่าน Mouthpiece',x:'หน้าตาเหมือน Tuba ตัวเล็ก',r:1},
  {t:'inst',id:'s-chamber',n:4,h:'Quartet · Quintet · Octet',d:'Quartet 4 คน · Quintet 5 คน · Octet 8 คน',x:'Quarter = 1/4 · Octopus 8 ขา'}
 ];
 STARS.forEach((s,i)=>{const d=document.createElement('div');d.className='scard';d.style.animationDelay=(i*.07)+'s';
-  d.innerHTML=`<span class="big">★ ${s.h}</span><span>${s.d}</span><span style="color:var(--mute);font-size:14.5px">${s.x}</span><button class="go">ไปที่บทเรียน ›</button>`;
+  d.innerHTML=`${s.r?'<span class="star r" style="align-self:flex-start">ขีดเส้นแดง</span>':''}<span class="big">★ ${s.h}</span><span>${s.d}</span><span style="color:var(--mute);font-size:14.5px">${s.x}</span><button class="go">ไปที่บทเรียน ›</button>`;
   d.querySelector('.go').onclick=()=>{show(s.t);if(s.f)$(`#famBtns [data-f="${s.f}"]`).click();if(s.n)$(`#chBtns [data-n="${s.n}"]`).click();
     const el=document.getElementById(s.id);setTimeout(()=>{const y=el.getBoundingClientRect().top+scrollY-110;window.scrollTo({top:y,behavior:'smooth'});el.classList.remove('flash');void el.offsetWidth;el.classList.add('flash')},60)};
   $('#starGrid').appendChild(d)});

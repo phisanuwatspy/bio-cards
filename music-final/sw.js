@@ -1,5 +1,5 @@
 // Offline cache for ดนตรี Final. Bump VERSION when index.html changes.
-const VERSION = "musicfinal-v1";
+const VERSION = "musicfinal-v2";
 const SHELL = ["./", "index.html", "manifest.webmanifest", "icon-192.png", "icon-512.png", "apple-touch-icon.png"];
 
 self.addEventListener("install", e => {
