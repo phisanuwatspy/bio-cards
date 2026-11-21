@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#FAF5EC">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="ดนตรี Final">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<title>ดนตรี Final · สื่อการสอน</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai+Looped:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#FAF5EC;--card:#FFFDF8;--ink:#3A2E27;--mute:#7A6A5E;--line:#EADFCF;
+  --acc:#C0623A;--acc2:#D9A441;--ok:#5E8A4E;--bad:#B8473A;
+  --S:#C0623A;--W:#6F8A4F;--B:#C8922A;--K:#5E7FA0;--P:#946290;--R:#8A6E58;
+}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--ink)}
+body{font-family:'Noto Sans Thai Looped',system-ui,sans-serif;line-height:1.75;font-size:16px;-webkit-font-smoothing:antialiased}
+button{font:inherit;color:inherit;cursor:pointer}
+header{padding-top:env(safe-area-inset-top);position:sticky;top:0;z-index:20;background:rgba(250,245,236,.96);backdrop-filter:blur(6px);border-bottom:1px solid var(--line)}
+.top{max-width:960px;margin:0 auto;padding:12px 16px 4px;display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.top h1{font-size:19px;margin:0;font-weight:700}
+.top span{font-size:13px;color:var(--mute)}
+nav{max-width:960px;margin:0 auto;display:flex;gap:6px;overflow-x:auto;padding:6px 16px 10px;scrollbar-width:none}
+nav::-webkit-scrollbar{display:none}
+nav button{flex:0 0 auto;border:1px solid var(--line);background:var(--card);border-radius:999px;padding:6px 14px;font-size:14px;white-space:nowrap}
+nav button.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+main{max-width:960px;margin:0 auto;padding:16px max(16px,env(safe-area-inset-right)) calc(80px + env(safe-area-inset-bottom)) max(16px,env(safe-area-inset-left))}
+section.lesson{display:none;animation:fade .35s ease}
+section.lesson.on{display:block}
+@keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px;margin:0 0 14px}
+.card h2{font-size:18px;margin:0 0 4px}
+.card .sub{font-size:13.5px;color:var(--mute);margin:0 0 12px}
+.tip{border-left:3px solid var(--acc2);background:#FBF1DE;padding:8px 12px;border-radius:0 10px 10px 0;font-size:14.5px;margin-top:12px}
+.trap{border-left:3px solid var(--bad);background:#F8E7E2;padding:8px 12px;border-radius:0 10px 10px 0;font-size:14.5px;margin-top:10px}
+.row{display:flex;flex-wrap:wrap;gap:8px}
+.btn{border:1px solid var(--line);background:#fff;border-radius:12px;padding:8px 14px;font-size:15px;transition:transform .12s,background .2s}
+.btn:active{transform:scale(.97)}
+.btn.on{background:var(--acc);color:#fff;border-color:var(--acc)}
+.btn.dark{background:var(--ink);color:#fff;border-color:var(--ink)}
+.chip{display:inline-block;border-radius:999px;padding:2px 10px;font-size:13.5px;background:#F2E8D8;margin:2px 4px 2px 0}
+.grid{display:grid;gap:10px}
+.g2{grid-template-columns:repeat(auto-fit,minmax(230px,1fr))}
+.g4{grid-template-columns:repeat(auto-fit,minmax(150px,1fr))}
+.tile{border:1px solid var(--line);border-radius:14px;padding:12px;background:#fff;text-align:left;transition:border-color .2s,box-shadow .2s}
+.tile.on{border-color:var(--acc);box-shadow:0 0 0 2px rgba(192,98,58,.18)}
+.tile b{display:block;font-size:16px}
+.tile small{color:var(--mute);font-size:13px}
+.detail{margin-top:12px;padding:12px;border-radius:12px;background:#F6EEE1;font-size:15px;animation:fade .3s}
+.detail ul{margin:4px 0;padding-left:20px}
+.lbl{font-size:12.5px;color:var(--mute);letter-spacing:.02em}
+.fam{display:inline-flex;align-items:center;justify-content:center;min-width:26px;height:26px;border-radius:8px;color:#fff;font-weight:700;font-size:13px;padding:0 6px;margin-right:6px}
+.fS{background:var(--S)}.fW{background:var(--W)}.fB{background:var(--B)}.fK{background:var(--K)}.fP{background:var(--P)}.fR{background:var(--R)}
+/* Thai actions */
+.act svg{width:100%;height:auto;display:block;background:#FBF6EE;border-radius:10px;margin-bottom:8px}
+.vib{transform-box:fill-box;transform-origin:center;animation:vib .12s ease-in-out infinite alternate}
+@keyframes vib{from{transform:scaleY(1)}to{transform:scaleY(-1)}}
+.bow{animation:bow 1.3s ease-in-out infinite alternate}
+@keyframes bow{from{transform:translateX(-14px)}to{transform:translateX(22px)}}
+.mallet{transform-box:view-box;transform-origin:98px 8px;animation:hit 1s ease-in infinite}
+@keyframes hit{0%{transform:rotate(-24deg)}45%{transform:rotate(0)}55%{transform:rotate(0)}100%{transform:rotate(-24deg)}}
+.ripple{transform-box:fill-box;transform-origin:center;animation:rip 1s ease-out infinite;opacity:0}
+@keyframes rip{0%,44%{opacity:0;transform:scale(.3)}50%{opacity:.8;transform:scale(.6)}100%{opacity:0;transform:scale(1.6)}}
+.air{animation:air 1.1s linear infinite;opacity:0}
+.air:nth-of-type(2){animation-delay:.35s}.air:nth-of-type(3){animation-delay:.7s}
+@keyframes air{0%{opacity:0;transform:translateX(0)}20%{opacity:.9}100%{opacity:0;transform:translateX(30px)}}
+/* game */
+.game{text-align:center}
+.inst{font-size:28px;font-weight:700;margin:6px 0 12px;min-height:50px}
+.game .row{justify-content:center}
+.game .btn{min-width:72px;font-size:17px}
+.btn.good{background:var(--ok);color:#fff;border-color:var(--ok)}
+.btn.badc{background:var(--bad);color:#fff;border-color:var(--bad)}
+.fb{min-height:28px;font-size:15px;margin-top:10px}
+/* ching */
+.ching{display:flex;flex-direction:column;align-items:center;gap:12px}
+.beats{display:flex;gap:6px;flex-wrap:wrap;justify-content:center}
+.beat{width:56px;height:56px;border-radius:50%;border:2px solid var(--line);display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:600;background:#fff;transition:background .08s,transform .08s}
+.beat.hot{background:var(--acc2);border-color:var(--acc2);color:#fff;transform:scale(1.12)}
+.beat.hot.c2{background:var(--acc);border-color:var(--acc)}
+.rate{font-size:15px;color:var(--mute);text-align:center}
+/* relief */
+.relief svg{width:100%;max-width:460px;display:block;margin:0 auto}
+.bump{transform-box:fill-box;transform-origin:center;transition:transform .7s cubic-bezier(.3,1.4,.5,1),opacity .4s}
+.free{transition:transform .8s cubic-bezier(.3,1.2,.5,1),opacity .5s}
+.spin{transform-box:fill-box;transform-origin:center;animation:spin 4s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+/* formula */
+.formula{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:8px;margin:8px 0}
+.fchip{padding:8px 14px;border-radius:12px;background:#fff;border:1px solid var(--line);font-weight:600;transition:transform .5s,background .3s}
+.formula.go .fchip{background:#FBF1DE;transform:translateY(-4px)}
+.formula .eq{font-weight:700;color:var(--mute)}
+.result{opacity:0;transform:scale(.6);transition:all .5s cubic-bezier(.3,1.5,.5,1);background:var(--acc);color:#fff;border-radius:14px;padding:8px 16px;font-weight:700}
+.formula.go .result{opacity:1;transform:scale(1)}
+/* leader */
+.ens{border:1px solid var(--line);border-radius:14px;padding:12px;background:#fff}
+.ens .inst2{display:inline-block;margin:3px 4px 3px 0;padding:3px 10px;border-radius:999px;background:#F2E8D8;font-size:14px;transition:all .4s}
+.ens .inst2.lead{background:var(--acc);color:#fff;transform:scale(1.06)}
+.ens .inst2.core{background:var(--acc2);color:#fff}
+/* timeline */
+.tl svg{width:100%;height:auto;display:block}
+.tlline{stroke-dasharray:600;stroke-dashoffset:600;transition:stroke-dashoffset 1.4s ease}
+.tl.go .tlline{stroke-dashoffset:0}
+.node{cursor:pointer;transition:transform .2s}
+.node circle{transition:r .25s}
+/* stage */
+.stage{position:relative;width:100%;aspect-ratio:4/3;background:linear-gradient(#FBF6EE,#F3E7D5);border-radius:14px;border:1px solid var(--line);overflow:hidden}
+.dot{position:absolute;width:34px;height:34px;margin:-17px 0 0 -17px;border-radius:50%;color:#fff;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;transition:left .8s cubic-bezier(.4,1.3,.5,1),top .8s cubic-bezier(.4,1.3,.5,1),opacity .4s,background .4s;box-shadow:0 2px 4px rgba(0,0,0,.15)}
+.aud{position:absolute;left:0;right:0;bottom:0;height:22px;background:rgba(58,46,39,.08);font-size:12px;text-align:center;line-height:22px;color:var(--mute)}
+.stlabel{position:absolute;top:8px;left:10px;font-size:12px;color:var(--mute);background:rgba(255,255,255,.7);padding:0 8px;border-radius:6px}
+.info{display:grid;grid-template-columns:auto 1fr;gap:4px 12px;font-size:15px;margin-top:12px}
+.info div:nth-child(odd){color:var(--mute);font-size:13.5px;padding-top:1px}
+/* chamber */
+.cdots{display:flex;gap:6px;flex-wrap:wrap;justify-content:center;min-height:40px;margin:10px 0}
+.cd{width:30px;height:30px;border-radius:50%;background:var(--acc);animation:pop .35s cubic-bezier(.3,1.6,.5,1) both}
+@keyframes pop{from{transform:scale(0)}to{transform:scale(1)}}
+.cname{text-align:center;font-size:22px;font-weight:700}
+/* quiz */
+.qwrap{max-width:680px;margin:0 auto}
+.bar{height:6px;background:var(--line);border-radius:6px;overflow:hidden;margin:6px 0 14px}
+.bar i{display:block;height:100%;background:var(--acc);transition:width .3s}
+.qtopic{font-size:12.5px;color:var(--mute)}
+.qtext{font-size:18px;font-weight:600;margin:4px 0 14px}
+.choices{display:grid;gap:8px}
+.choice{text-align:left;border:1px solid var(--line);background:#fff;border-radius:12px;padding:10px 14px;font-size:16px;transition:background .2s}
+.choice.good{background:#E3EEDB;border-color:var(--ok)}
+.choice.badc{background:#F6DDD8;border-color:var(--bad)}
+.choice:disabled{cursor:default}
+.exp{margin-top:12px;font-size:15px;padding:10px 12px;border-radius:12px;background:#F6EEE1;animation:fade .3s}
+.score{font-size:40px;font-weight:700;text-align:center;margin:6px 0}
+.wrong{font-size:14.5px;border-top:1px solid var(--line);padding:8px 0}
+.center{text-align:center}
+.star{display:inline-block;background:var(--acc2);color:#fff;font-size:12.5px;font-weight:700;border-radius:999px;padding:1px 10px;margin:0 0 6px;letter-spacing:.02em}
+.card.hl{border:2px solid var(--acc2);box-shadow:0 0 0 4px rgba(217,164,65,.14)}
+.tile.hl{border:2px solid var(--acc2)}
+mark{background:#F6DFA8;color:inherit;border-radius:4px;padding:0 3px}
+.flash{animation:flash 1.6s ease}
+@keyframes flash{0%,40%{box-shadow:0 0 0 6px rgba(217,164,65,.55)}100%{box-shadow:0 0 0 4px rgba(217,164,65,.14)}}
+.sgrid{display:grid;gap:10px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+.scard{background:#fff;border:2px solid var(--acc2);border-radius:14px;padding:12px 14px;display:flex;flex-direction:column;gap:4px;animation:fade .4s both}
+.scard .big{font-size:18px;font-weight:700}
+.scard .go{align-self:flex-start;margin-top:6px;border:none;background:var(--ink);color:#fff;border-radius:10px;padding:5px 12px;font-size:14px}
+.qstar{color:var(--acc2);font-weight:700}
+.mt{margin-top:12px}
+</style>
+</head>
+<body>
+<header>
+  <div class="top"><h1>ดนตรี Final</h1><span>สื่อการสอน · ข้อสอบ 60 ข้อ 30 คะแนน</span></div>
+  <nav id="nav">
+    <button data-t="star" class="on">★ จุดเน้น</button>
+    <button data-t="art">1 ศิลปะ</button>
+    <button data-t="thai">2 ดนตรีไทย</button>
+    <button data-t="inst">3 ดนตรีสากล ★★★</button>
+    <button data-t="band">4 วงดนตรีสากล</button>
+    <button data-t="hist">5 ประวัติดนตรีตะวันตก</button>
+    <button data-t="quiz">6 ข้อสอบจำลอง</button>
+  </nav>
+</header>
+<main>
+
+<!-- ================= STAR ================= -->
+<section class="lesson on" id="star">
+  <div class="card hl">
+    <h2>★ จุดเน้นที่จดดอกจันไว้</h2>
+    <p class="sub">อ่านหน้านี้ก่อน · แตะ "ไปที่บทเรียน" เพื่อดูแอนิเมชัน</p>
+    <div class="sgrid" id="starGrid"></div>
+  </div>
+  <div class="card center"><button class="btn dark" id="starQuiz">ทำข้อสอบเฉพาะข้อ ★</button></div>
+</section>
+
+<!-- ================= 1 ART ================= -->
+<section class="lesson" id="art">
+  <div class="card">
+    <h2>ศิลปะ 2 กลุ่มใหญ่</h2>
+    <p class="sub">แตะแต่ละแขนงเพื่อดูรายละเอียด</p>
+    <div class="lbl">วิจิตรศิลป์ · Fine Arts — เน้นความงาม</div>
+    <div class="grid g4 mt" id="artTiles"></div>
+    <div class="lbl mt">ประยุกต์ศิลป์ · Applied Arts — เน้นประโยชน์ใช้สอย</div>
+    <div class="grid g4 mt" id="artTiles2"></div>
+    <div id="artDetail"></div>
+  </div>
+
+  <div class="card relief">
+    <h2>ประติมากรรม 3 แบบ</h2>
+    <p class="sub">มองจากด้านข้าง — ดูว่างาน "ยื่น" ออกจากพื้นแค่ไหน</p>
+    <div class="row" id="reliefBtns" style="justify-content:center">
+      <button class="btn on" data-r="0">นูนต่ำ</button>
+      <button class="btn" data-r="1">นูนสูง</button>
+      <button class="btn" data-r="2">ลอยตัว</button>
+    </div>
+    <svg viewBox="0 0 320 170" aria-label="relief animation">
+      <rect x="0" y="0" width="320" height="170" fill="#FBF6EE"/>
+      <g id="bumpG"><ellipse class="bump" id="bump" cx="62" cy="85" rx="90" ry="52" fill="#D9A441" style="transform:scaleX(.18)"/></g>
+      <rect x="0" y="0" width="22" height="170" fill="#FBF6EE"/><rect x="22" y="15" width="40" height="140" fill="#B9A58C"/>
+      <text x="42" y="168" font-size="10" text-anchor="middle" fill="#7A6A5E">พื้นหลัง</text>
+      <g class="free" id="free" style="opacity:0;transform:translateX(-80px)">
+        <ellipse cx="225" cy="85" rx="34" ry="52" fill="#D9A441"/>
+        <circle class="spin" cx="225" cy="85" r="66" fill="none" stroke="#C0623A" stroke-width="2" stroke-dasharray="6 8"/>
+      </g>
+      <g id="eye" fill="#3A2E27"><text id="eyeTxt" x="290" y="90" font-size="22" text-anchor="middle">👁</text></g>
+    </svg>
+    <div class="detail" id="reliefTxt"></div>
+  </div>
+
+  <div class="card">
+    <h2>สูตรแรงบันดาลใจ</h2>
+    <p class="sub">แตะปุ่มเพื่อรวมสูตร</p>
+    <div class="formula" id="formula">
+      <span class="fchip">ประสบการณ์</span><span class="eq">+</span>
+      <span class="fchip">อารมณ์</span><span class="eq">+</span>
+      <span class="fchip">สิ่งแวดล้อม</span><span class="eq">=</span>
+      <span class="result">แรงบันดาลใจ</span>
+    </div>
+    <div class="center"><button class="btn dark" id="formulaBtn">รวมสูตร</button></div>
+    <div class="tip">จำง่าย: เหมือนทำอาหาร — สูตรที่เคยทำ (ประสบการณ์) + อารมณ์วันนั้น + วัตถุดิบรอบตัว (สิ่งแวดล้อม) = เมนูใหม่</div>
+  </div>
+</section>
+
+<!-- ================= 2 THAI ================= -->
+<section class="lesson" id="thai">
+  <div class="card" id="s-thai">
+    <h2>เครื่องดนตรีไทย แบ่งตามกิริยาการเล่น</h2>
+    <p class="sub">ออกสอบ ~10 ข้อ · ดูท่าทางการเล่นของแต่ละแบบ</p>
+    <div class="grid g4">
+      <div class="tile act hl">
+        <span class="star">★ เน้น</span>
+        <svg viewBox="0 0 120 70"><circle cx="10" cy="35" r="4" fill="#8A6E58"/><circle cx="110" cy="35" r="4" fill="#8A6E58"/><path class="vib" d="M10 35 Q35 24 60 35 T110 35" fill="none" stroke="#C0623A" stroke-width="2.5"/></svg>
+        <b>ดีด</b><small>ใช้นิ้ว/ไม้ดีดสาย</small>
+        <div class="mt"><mark>กระจับปี่</mark> · จะเข้ · พิณน้ำเต้า · ซึง · พิณ</div>
+      </div>
+      <div class="tile act">
+        <svg viewBox="0 0 120 70"><line x1="8" y1="44" x2="112" y2="44" stroke="#8A6E58" stroke-width="2"/><g class="bow"><rect x="22" y="26" width="64" height="5" rx="2.5" fill="#C0623A"/><line x1="24" y1="38" x2="84" y2="38" stroke="#D9A441" stroke-width="2"/><line x1="24" y1="31" x2="24" y2="38" stroke="#C0623A" stroke-width="2"/><line x1="84" y1="31" x2="84" y2="38" stroke="#C0623A" stroke-width="2"/></g></svg>
+        <b>สี</b><small>ใช้คันชักสีสาย</small>
+        <div class="mt">ซอด้วง · ซออู้ · ซอสามสาย · สะล้อ</div>
+      </div>
+      <div class="tile act">
+        <svg viewBox="0 0 120 70"><rect x="22" y="52" width="76" height="9" rx="3" fill="#8A6E58"/><circle class="ripple" cx="60" cy="52" r="12" fill="none" stroke="#D9A441" stroke-width="2"/><g class="mallet"><line x1="98" y1="8" x2="64" y2="40" stroke="#3A2E27" stroke-width="3"/><circle cx="62" cy="43" r="6" fill="#C0623A"/></g></svg>
+        <b>ตี</b><small>ใช้ไม้/มือตี</small>
+        <div class="mt">ระนาดเอก · ฆ้องวงใหญ่ · ขิม · ฉิ่ง · ตะโพน · กลอง</div>
+      </div>
+      <div class="tile act">
+        <svg viewBox="0 0 120 70"><rect x="8" y="28" width="72" height="14" rx="7" fill="#8A6E58"/><circle cx="30" cy="35" r="2.5" fill="#FBF6EE"/><circle cx="44" cy="35" r="2.5" fill="#FBF6EE"/><circle cx="58" cy="35" r="2.5" fill="#FBF6EE"/><g><circle class="air" cx="86" cy="35" r="3" fill="#C0623A"/><circle class="air" cx="86" cy="35" r="3" fill="#C0623A"/><circle class="air" cx="86" cy="35" r="3" fill="#C0623A"/></g></svg>
+        <b>เป่า</b><small>ใช้ลมเป่า</small>
+        <div class="mt">ปี่ · ขลุ่ย · แคน · โหวด</div>
+      </div>
+    </div>
+    <div class="trap">กับดัก: <b>ขิม = ตี</b> ถึงมีสายแต่ใช้ไม้ตี · <b>กระจับปี่ = ดีด</b> ชื่อมี "ปี่" แต่ไม่ได้เป่า · <b>สะล้อ = สี</b> · <b>โหวด = เป่า</b></div>
+  </div>
+
+  <div class="card game">
+    <h2>เกมจัดหมวดเร็ว</h2>
+    <p class="sub">เครื่องนี้เล่นแบบไหน?</p>
+    <div class="inst" id="gInst">—</div>
+    <div class="row" id="gBtns">
+      <button class="btn" data-a="ดีด">ดีด</button><button class="btn" data-a="สี">สี</button>
+      <button class="btn" data-a="ตี">ตี</button><button class="btn" data-a="เป่า">เป่า</button>
+    </div>
+    <div class="fb" id="gFb">ถูกติดกัน 0 ข้อ</div>
+  </div>
+
+  <div class="card hl" id="s-ching">
+    <span class="star">★ เน้น</span>
+    <h2>ฉิ่ง · คุมอัตราจังหวะ</h2>
+    <p class="sub">ฉิ่ง = ตีเปิดเสียงยาว · ฉับ = ตีปิดเสียงสั้น · แตะเลือกอัตรา (มีเสียง)</p>
+    <div class="ching">
+      <div class="beats" id="beats"></div>
+      <div class="row" style="justify-content:center" id="rateBtns">
+        <button class="btn" data-ms="1200">สามชั้น · ช้า</button>
+        <button class="btn" data-ms="600">สองชั้น · กลาง</button>
+        <button class="btn" data-ms="300">ชั้นเดียว · เร็ว</button>
+        <button class="btn dark" data-ms="0">หยุด</button>
+      </div>
+      <div class="rate" id="rateTxt">เลือกอัตราจังหวะ</div>
+    </div>
+    <div class="tip">จำง่าย: ชั้นยิ่ง <b>มาก</b> ยิ่ง <b>ช้า</b> — เหมือนบันได 3 ชั้นเดินนานกว่า 1 ชั้น</div>
+  </div>
+
+  <div class="card">
+    <h2>จังหวะหน้าทับ</h2>
+    <p class="sub">ควบคุมด้วยเสียงกลองประเภทต่างๆ</p>
+    <div class="row"><span class="chip">ตะโพน</span><span class="chip">กลองทัด</span><span class="chip">กลองแขก</span><span class="chip">โทน-รำมะนา</span></div>
+    <div class="tip">จำง่าย: ฉิ่ง = นาฬิกาบอกความเร็ว · หน้าทับ = แพทเทิร์นกลองประจำเพลง เหมือน drum beat ในเพลงป๊อป</div>
+  </div>
+
+  <div class="card">
+    <h2>ผู้นำวง / ผู้ขึ้นเพลง</h2>
+    <p class="sub">สีส้ม = นำวง · สีเหลือง = หลักของวง</p>
+    <div class="grid g2" id="ensWrap"></div>
+    <div class="tip">ยึดตามที่อาจารย์สอนเป็นหลัก ถ้าในชีทระบุต่างจากนี้</div>
+  </div>
+
+  <div class="card">
+    <h2>ประวัติดนตรีไทย (ย่อ)</h2>
+    <div class="grid g2">
+      <div class="tile"><b>สุโขทัย</b><small>วงขับไม้</small><div>คนขับลำนำ + บัณเฑาะว์ + ซอสามสาย</div></div>
+      <div class="tile"><b>อยุธยา</b><small>มโหรีเครื่องสี่</small><div>เพิ่ม กระจับปี่ เข้าวงขับไม้</div></div>
+      <div class="tile"><b>รัตนโกสินทร์</b><small>ปี่พาทย์เครื่องใหญ่</small><div>ร.4 เพิ่ม ระนาดเอกเหล็ก ระนาดทุ้มเหล็ก</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 3 INSTRUMENTS ================= -->
+<section class="lesson" id="inst">
+  <div class="card hl" id="s-fam">
+    <span class="star">★★★ เน้นมาก</span>
+    <h2>เครื่องดนตรีสากล 5 กลุ่ม</h2>
+    <p class="sub">แตะตัวอักษรเพื่อดูเครื่องในกลุ่ม</p>
+    <div class="row" id="famBtns"></div>
+    <div id="famDetail"></div>
+    <div class="tip">ตัวย่อในตารางวง: S String · W Woodwind · B Brass · K Keyboard · P Percussion · R Rhythm section</div>
+  </div>
+  <div class="card hl" id="s-chamber">
+    <span class="star">★ เน้น · Quartet Quintet Octet</span>
+    <h2>วงเล็ก Chamber · นับคน</h2>
+    <p class="sub">แตะจำนวนผู้เล่น</p>
+    <div class="row" style="justify-content:center" id="chBtns"></div>
+    <div class="cdots" id="chDots"></div>
+    <div class="cname" id="chName">Quartet</div>
+    <div class="center" id="chNote" style="font-size:14.5px;color:var(--mute)"></div>
+    <div class="tip">จำง่าย: <b>Quart</b>er = 1/4 → 4 คน · <b>Oct</b>opus มี 8 ขา → Octet 8 คน · <b>Quint</b> = 5</div>
+  </div>
+</section>
+
+<!-- ================= 4 BANDS ================= -->
+<section class="lesson" id="band">
+  <div class="card">
+    <h2>วงดนตรีสากล · ดูการจัดวง</h2>
+    <p class="sub">แตะชื่อวง แล้วดูผู้เล่นเดินเข้าตำแหน่ง</p>
+    <div class="row" id="bandBtns"></div>
+    <div class="stage mt" id="stage"><div class="stlabel" id="stLabel"></div><div class="aud" id="aud">ผู้ชม</div></div>
+    <div class="row mt" id="legend" style="font-size:13px"></div>
+    <div class="info" id="bandInfo"></div>
+  </div>
+  <div class="card">
+    <h2>สรุป 3 คำถามของทุกวง</h2>
+    <p class="sub">1 เครื่องดนตรีที่ใช้ · 2 รูปแบบการจัดวง · 3 แนวเพลง</p>
+    <div class="grid g2">
+      <div class="tile"><b>ครึ่งวงกลม → Classic/Pop</b><small>Chamber · Orchestra</small><div>มีวาทยกร (Conductor) ยืนตรงกลาง</div></div>
+      <div class="tile"><b>แถวตอน → March</b><small>Military · Brass Band</small><div>วงที่ "เดินขบวน" ต่อกันเป็นแถว</div></div>
+      <div class="tile"><b>หน้ากระดาน → Jazz/Pop</b><small>Jazz · Combo · Shadow · Popular</small><div>ยืนเรียงหน้าเวทีหันหาผู้ชม</div></div>
+      <div class="tile"><b>แบ่ง 2 กลุ่ม → Jazz</b><small>Big Band</small><div>กลุ่มเครื่องเป่า | กลุ่ม Rhythm</div></div>
+    </div>
+    <div class="trap">กับดัก: Military = <b>W+B+P</b> มีเครื่องลมไม้ · Brass Band = <b>B+P</b> ไม่มี W · Orchestra = <b>S+W+B+P</b> ครบเครื่องสาย</div>
+  </div>
+</section>
+
+<!-- ================= 5 HISTORY ================= -->
+<section class="lesson" id="hist">
+  <div class="card tl" id="tl">
+    <h2>ประวัติดนตรีตะวันตก</h2>
+    <p class="sub">แตะจุดบนเส้นเวลา</p>
+    <svg viewBox="0 0 340 110">
+      <line class="tlline" x1="30" y1="55" x2="310" y2="55" stroke="#D9A441" stroke-width="4" stroke-linecap="round"/>
+      <g class="node" data-e="0"><circle cx="50" cy="55" r="12" fill="#8A6E58"/><text x="50" y="30" font-size="12" text-anchor="middle" fill="#3A2E27" font-weight="700">Baroque</text><text x="50" y="88" font-size="10" text-anchor="middle" fill="#7A6A5E">~1600–1750</text></g>
+      <g class="node" data-e="1"><circle cx="170" cy="55" r="12" fill="#C0623A"/><text x="170" y="30" font-size="12" text-anchor="middle" fill="#3A2E27" font-weight="700">Classic</text><text x="170" y="88" font-size="10" text-anchor="middle" fill="#7A6A5E">~1750–1820</text></g>
+      <g class="node" data-e="2"><circle cx="290" cy="55" r="12" fill="#5E7FA0"/><text x="290" y="30" font-size="12" text-anchor="middle" fill="#3A2E27" font-weight="700">Romantic</text><text x="290" y="88" font-size="10" text-anchor="middle" fill="#7A6A5E">~1820–1900</text></g>
+    </svg>
+    <div id="eraDetail"></div>
+  </div>
+  <div class="card">
+    <h2>รูปแบบวงที่ควรรู้</h2>
+    <div class="row"><span class="chip">String Quartet</span><span class="chip">String Orchestra</span></div>
+    <div class="mt" style="font-size:15px">String Quartet = Violin 1 · Violin 2 · Viola · Cello</div>
+  </div>
+</section>
+
+<!-- ================= 6 QUIZ ================= -->
+<section class="lesson" id="quiz">
+  <div class="qwrap" id="qwrap"></div>
+</section>
+</main>
+
+<script>
+(function(){
+const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+const shuffle=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a};
+
+/* ---------- tabs ---------- */
+function show(t){
+  $$('#nav button').forEach(b=>b.classList.toggle('on',b.dataset.t===t));
+  try{$(`#nav button[data-t="${t}"]`).scrollIntoView({inline:'center',block:'nearest'})}catch(e){}
+  $$('section.lesson').forEach(s=>s.classList.toggle('on',s.id===t));
+  if(t==='hist'){const tl=$('#tl');tl.classList.remove('go');requestAnimationFrame(()=>requestAnimationFrame(()=>tl.classList.add('go')));}
+  if(t==='band')setBand(curBand);
+  if(t!=='thai')stopChing();
+  window.scrollTo({top:0});
+  try{localStorage.setItem('mf_tab',t)}catch(e){}
+}
+$$('#nav button').forEach(b=>b.onclick=()=>show(b.dataset.t));
+
+/* ---------- 1 art ---------- */
+const ART=[
+ {k:'จิตรกรรม',s:'Painting · ภาพเขียน ภาพวาด',d:'<b>จิตรกรรมไทยประเพณี</b><ul><li>เรื่องที่นิยม: พุทธประวัติ · ชาดก · วรรณคดี</li><li>ตัวอย่าง: ภาพรามเกียรติ์ ระเบียงคด วัดพระแก้ว (วรรณคดี)</li></ul><b>จิตรกรรมร่วมสมัย</b><ul><li>งานยุคใหม่ ตามความคิดของศิลปิน ไม่ยึดแบบแผนโบราณ</li></ul>'},
+ {k:'ประติมากรรม',s:'Sculpture · งานปั้น แกะสลัก',d:'3 แบบ: <b>นูนต่ำ · นูนสูง · ลอยตัว</b><ul><li>ลอยตัว ดูได้รอบด้าน เช่น พระวิษณุกรรม</li></ul>ดูแอนิเมชันด้านล่าง'},
+ {k:'สถาปัตยกรรม',s:'Architecture · สิ่งก่อสร้าง',d:'<b>บ้าน · วัด · วัง</b><ul><li>สิ่งก่อสร้างที่คนใช้งานได้ และมีความงาม</li></ul>'},
+ {k:'วรรณกรรม',s:'Literature · งานเขียน',d:'<b>งานเขียน</b><ul><li>บทกวี · นวนิยาย · เรื่องสั้น · วรรณคดี</li></ul>'},
+ {k:'ดนตรี-นาฏศิลป์',s:'Music & Dance',d:'งานศิลปะที่รับรู้ทางเสียงและการเคลื่อนไหว'}
+];
+const ART2=[{k:'ประยุกต์ศิลป์',s:'Applied Arts · ศิลปะประโยชน์ใช้สอย',d:'<b>ศิลปะที่ใช้งานได้จริง</b><ul><li>เช่น เฟอร์นิเจอร์ · เครื่องปั้นดินเผา · บรรจุภัณฑ์ · เสื้อผ้า</li></ul>จำง่าย: แก้วกาแฟสวยๆ = สวย + ใช้ได้'}];
+function mkTiles(el,arr){arr.forEach(a=>{const b=document.createElement('button');b.className='tile';b.innerHTML=`<b>${a.k}</b><small>${a.s}</small>`;b.onclick=()=>{$$('#art .tile').forEach(x=>x.classList.remove('on'));b.classList.add('on');$('#artDetail').innerHTML=`<div class="detail">${a.d}</div>`};el.appendChild(b)})}
+mkTiles($('#artTiles'),ART);mkTiles($('#artTiles2'),ART2);
+$('#artTiles').firstChild.click();
+
+const REL=[
+ {sx:.18,t:'<b>นูนต่ำ</b> · ยื่นจากพื้นเล็กน้อย ดูได้ด้านหน้าด้านเดียว<br>จำง่าย: ลายบนเหรียญ'},
+ {sx:.62,t:'<b>นูนสูง</b> · ยื่นจากพื้นมาก (เกินครึ่งของรูปทรง) แต่ยังติดพื้นหลัง<br>จำง่าย: หน้าบันวัด'},
+ {sx:0,t:'<b>ลอยตัว</b> · ไม่ติดพื้นหลัง ดูได้รอบด้าน 360°<br>ตัวอย่าง: พระวิษณุกรรม'}
+];
+function setRel(i){
+  $$('#reliefBtns .btn').forEach((b,j)=>b.classList.toggle('on',i===j));
+  const bump=$('#bump'),free=$('#free');
+  if(i<2){bump.style.opacity=1;bump.style.transform=`scaleX(${REL[i].sx})`;free.style.opacity=0;free.style.transform='translateX(-80px)';}
+  else{bump.style.transform='scaleX(.01)';bump.style.opacity=0;free.style.opacity=1;free.style.transform='translateX(0)';}
+  $('#eye').style.display=i<2?'':'none';
+  $('#reliefTxt').innerHTML=REL[i].t;
+}
+$$('#reliefBtns .btn').forEach((b,i)=>b.onclick=()=>setRel(i));setRel(0);
+$('#formulaBtn').onclick=()=>{const f=$('#formula');f.classList.remove('go');void f.offsetWidth;setTimeout(()=>f.classList.add('go'),30)};
+
+/* ---------- 2 thai ---------- */
+const TI=[['จะเข้','ดีด'],['กระจับปี่','ดีด'],['พิณน้ำเต้า','ดีด'],['ซึง','ดีด'],['พิณ','ดีด'],
+['ซอด้วง','สี'],['ซออู้','สี'],['ซอสามสาย','สี'],['สะล้อ','สี'],
+['ระนาดเอก','ตี'],['ระนาดทุ้ม','ตี'],['ฆ้องวงใหญ่','ตี'],['ขิม','ตี'],['ฉิ่ง','ตี'],['ฉาบ','ตี'],['ตะโพน','ตี'],['โทน','ตี'],['กลองแขก','ตี'],['โปงลาง','ตี'],
+['ปี่ใน','เป่า'],['ปี่ชวา','เป่า'],['ขลุ่ย','เป่า'],['แคน','เป่า'],['โหวด','เป่า']];
+let gCur=null,streak=0,gLock=false;
+function gNext(){let n;do{n=TI[Math.floor(Math.random()*TI.length)]}while(gCur&&n[0]===gCur[0]);gCur=n;$('#gInst').textContent=n[0];$$('#gBtns .btn').forEach(b=>b.className='btn');gLock=false}
+$$('#gBtns .btn').forEach(b=>b.onclick=()=>{if(gLock)return;gLock=true;const ok=b.dataset.a===gCur[1];
+  $$('#gBtns .btn').forEach(x=>{if(x.dataset.a===gCur[1])x.classList.add('good')});
+  if(!ok){b.classList.add('badc');streak=0;$('#gFb').innerHTML=`${gCur[0]} = <b>${gCur[1]}</b> · เริ่มนับใหม่`}
+  else{streak++;$('#gFb').textContent=`ถูก! ติดกัน ${streak} ข้อ`}
+  setTimeout(gNext,ok?700:1500)});
+gNext();
+
+const bw=$('#beats');for(let i=0;i<8;i++){const d=document.createElement('div');d.className='beat';d.textContent=i%2?'ฉับ':'ฉิ่ง';bw.appendChild(d)}
+let timer=null,bi=0,actx=null;
+function snd(open){try{actx=actx||new (window.AudioContext||window.webkitAudioContext)();const t=actx.currentTime,g=actx.createGain();g.connect(actx.destination);
+  if(open){[2600,3900].forEach(f=>{const o=actx.createOscillator();o.type='sine';o.frequency.value=f;o.connect(g);o.start(t);o.stop(t+.7)});g.gain.setValueAtTime(.18,t);g.gain.exponentialRampToValueAtTime(.001,t+.7)}
+  else{const o=actx.createOscillator();o.type='square';o.frequency.value=1800;o.connect(g);g.gain.setValueAtTime(.08,t);g.gain.exponentialRampToValueAtTime(.001,t+.06);o.start(t);o.stop(t+.07)}}catch(e){}}
+function stopChing(){clearInterval(timer);timer=null;$$('.beat').forEach(x=>x.classList.remove('hot','c2'));$$('#rateBtns .btn').forEach(b=>{if(b.dataset.ms!=='0')b.classList.remove('on')})}
+const RT={1200:'สามชั้น = ช้า · ช่องว่างระหว่างเสียงยาวที่สุด',600:'สองชั้น = ปานกลาง · เร็วขึ้นเท่าตัว',300:'ชั้นเดียว = เร็ว · เร็วที่สุด'};
+$$('#rateBtns .btn').forEach(b=>b.onclick=()=>{stopChing();const ms=+b.dataset.ms;if(!ms){$('#rateTxt').textContent='หยุดแล้ว';return}
+  b.classList.add('on');$('#rateTxt').textContent=RT[ms];bi=0;
+  const tick=()=>{const bs=$$('.beat');bs.forEach(x=>x.classList.remove('hot','c2'));const cur=bs[bi%8];cur.classList.add('hot');if(bi%2)cur.classList.add('c2');snd(bi%2===0);bi++};
+  tick();timer=setInterval(tick,ms)});
+
+const ENS=[
+ {n:'วงปี่พาทย์',s:'เครื่องตีเป็นหลัก',i:[['ระนาดเอก','lead'],['ฆ้องวงใหญ่','core'],['ปี่ใน'],['ระนาดทุ้ม'],['ตะโพน'],['กลองทัด'],['ฉิ่ง']],t:'ระนาดเอก นำวง · ฆ้องวงใหญ่ เป็นหลักทำนอง'},
+ {n:'วงเครื่องสาย',s:'เครื่องสายเป็นหลัก',i:[['ซอด้วง','lead'],['ซออู้'],['จะเข้'],['ขลุ่ย'],['โทน-รำมะนา'],['ฉิ่ง']],t:'ซอด้วง นำวง'},
+ {n:'วงมโหรี',s:'ปี่พาทย์ + เครื่องสาย',i:[['ซอด้วง','lead'],['ซอสามสาย','core'],['ซออู้'],['จะเข้'],['ระนาดเอก'],['ฆ้องวง'],['ขลุ่ย'],['ฉิ่ง']],t:'ซอด้วง นำวง · ซอสามสาย เป็นหลักของวง'}
+];
+ENS.forEach(e=>{const d=document.createElement('div');d.className='ens';d.innerHTML=`<b>${e.n}</b> <small style="color:var(--mute)">${e.s}</small><div class="mt">${e.i.map(x=>`<span class="inst2" data-c="${x[1]||''}">${x[0]}</span>`).join('')}</div><div class="mt" style="font-size:14.5px">${e.t}</div><button class="btn mt">ใครนำวง?</button>`;
+  d.querySelector('button').onclick=()=>d.querySelectorAll('.inst2').forEach(s=>{if(s.dataset.c)s.classList.toggle(s.dataset.c)});$('#ensWrap').appendChild(d)});
+
+/* ---------- 3 instruments ---------- */
+const FAM={
+ S:{n:'String',th:'เครื่องสาย',g:[['★ สี · ใช้คันชัก','<mark>Violin · Viola · Cello · Double bass</mark>'],['ดีด','Guitar · Harp · Mandolin · Ukulele']],tr:'Marimba ไม่ใช่ String — อยู่ Percussion'},
+ W:{n:'Woodwind',th:'เครื่องลมไม้',g:[['ไม่มีลิ้น','Flute · Piccolo · Recorder'],['ลิ้นเดี่ยว · Single reed','Clarinet · Saxophone'],['ลิ้นคู่ · Double reed','Oboe · Bassoon · English horn / Cor anglais']],tr:'Saxophone และ Flute ทำจากโลหะ แต่เป็น <b>Woodwind</b> — ดูที่วิธีทำให้เกิดเสียง ไม่ใช่วัสดุ'},
+ B:{n:'Brass',th:'เครื่องลมทองเหลือง',g:[['เป่าผ่านปากเป่า · Mouthpiece','Trumpet · Cornet · Trombone · Euphonium · Tuba · Sousaphone · Bugle · French horn']],tr:'Euphonium = Brass รูปร่างคล้าย Tuba ขนาดเล็ก'},
+ K:{n:'Keyboard',th:'เครื่องลิ่มนิ้ว',g:[['','<mark>Harpsichord ★</mark> · Organ · Piano · Accordion · Harmonica']],tr:'★ Harpsichord = Keyboard ยุค Baroque ใช้กลไก "ดีด" สาย · Piano ใช้ค้อน "ตี" สาย'},
+ P:{n:'Percussion',th:'เครื่องกระทบ',g:[['มีระดับเสียง','Marimba · Xylophone · Tubular bell · Timpani'],['ไม่มีระดับเสียง','Bongo · Drumset · Cymbal · Snare drum']],tr:'Marimba มีลิ่มไม้ แต่ใช้ไม้ตี → Percussion'}
+};
+Object.keys(FAM).forEach((k,i)=>{const b=document.createElement('button');b.className='btn';b.dataset.f=k;b.innerHTML=`<span class="fam f${k}">${k}</span>${FAM[k].n}`;b.onclick=()=>{
+  $$('#famBtns .btn').forEach(x=>x.classList.remove('on'));b.classList.add('on');const f=FAM[k];
+  $('#famDetail').innerHTML=`<div class="detail"><b>${f.n} · ${f.th}</b>${f.g.map((g,j)=>`<div class="mt" style="animation:fade .4s ${j*.15}s both">${g[0]?`<div class="lbl">${g[0]}</div>`:''}${g[1]}</div>`).join('')}<div class="trap">${f.tr}</div></div>`};
+  $('#famBtns').appendChild(b);if(!i)setTimeout(()=>b.click())});
+
+const CH={2:'Duet',3:'Trio',4:'Quartet',5:'Quintet',6:'Sextet',7:'Septet',8:'Octet',9:'Nonet'};
+const CHN={5:'Quintet = 5 คน',8:'Octet = 8 คน',4:'เช่น String Quartet = Violin 1 · Violin 2 · Viola · Cello',2:'Chamber เริ่มที่ 2 คน',9:'Chamber สูงสุด 9 คน'};
+for(let n=2;n<=9;n++){const b=document.createElement('button');b.className='btn';b.dataset.n=n;b.textContent=[4,5,8].includes(n)?n+'★':n;b.onclick=()=>{
+  $$('#chBtns .btn').forEach(x=>x.classList.remove('on'));b.classList.add('on');
+  $('#chDots').innerHTML=Array.from({length:n},(_,i)=>`<span class="cd" style="animation-delay:${i*.06}s"></span>`).join('');
+  $('#chName').textContent=CH[n];$('#chNote').textContent=CHN[n]||''};$('#chBtns').appendChild(b);if(n===4)setTimeout(()=>b.click())}
+
+/* ---------- 4 bands ---------- */
+const COL={S:'var(--S)',W:'var(--W)',B:'var(--B)',K:'var(--K)',P:'var(--P)',R:'var(--R)'};
+const rep=(f,n)=>Array(n).fill(f).map(x=>[x,x]);
+const BANDS=[
+ {n:'Chamber',ins:'2–9 คน · S, W, B, K, P',f:'ครึ่งวงกลม',g:'Classic / Pop',lay:'semi',d:[['S','S'],['S','S'],['W','W'],['K','K'],['P','P']]},
+ {n:'Orchestra',ins:'S + W + B + P',f:'ครึ่งวงกลม',g:'Classic / Pop',lay:'semi',d:[...rep('S',6),...rep('W',3),...rep('B',3),...rep('P',2)]},
+ {n:'Military',ins:'W + B + P',f:'แถวตอน',g:'March',lay:'col',d:[...rep('W',4),...rep('B',4),...rep('P',4)]},
+ {n:'Brass Band',ins:'B + P',f:'แถวตอน',g:'March',lay:'col',d:[...rep('B',6),...rep('P',3)]},
+ {n:'Jazz',ins:'Dr + Bs + Pn + Tp + Tb + Cl',f:'หน้ากระดาน',g:'Jazz',lay:'line',d:[['P','Dr'],['S','Bs'],['K','Pn'],['B','Tp'],['B','Tb'],['W','Cl']]},
+ {n:'Combo Band',ins:'W + B + R',f:'หน้ากระดาน',g:'Jazz',lay:'line',d:[['W','W'],['B','B'],['R','R'],['R','R'],['R','R']]},
+ {n:'Big Band',ins:'W + B + R',f:'แบ่ง 2 กลุ่ม: เครื่องเป่า | Rhythm',g:'Jazz',lay:'two',d:[...rep('W',5),...rep('B',6),...rep('R',4)]},
+ {n:'Shadow',ins:'Gt + Bs + Kb + Dr',f:'หน้ากระดาน',g:'Pop',lay:'line',d:[['S','Gt'],['S','Gt'],['S','Bs'],['K','Kb'],['P','Dr']]},
+ {n:'Popular',ins:'Gt + Bs + Kb + Dr',f:'หน้ากระดาน',g:'Pop',lay:'line',d:[['S','Gt'],['S','Bs'],['K','Kb'],['P','Dr']]}
+];
+const ABBR={Dr:'Drum',Bs:'Bass',Pn:'Piano',Tp:'Trumpet',Tb:'Trombone',Cl:'Clarinet',Gt:'Guitar',Kb:'Keyboard',R:'Rhythm section'};
+function layout(type,d){const n=d.length,p=[];
+  if(type==='semi'){const R=n<8?[34]:[24,42];const tot=R.reduce((a,b)=>a+b,0);let left=n;
+    R.forEach((r,ri)=>{const k=ri===R.length-1?left:Math.round(n*r/tot);left-=k;
+      for(let i=0;i<k;i++){const th=Math.PI*(.1+.8*(k===1?.5:i/(k-1)));p.push([50-r*Math.cos(th),80-r*1.3*Math.sin(th)])}});}
+  else if(type==='col'){const cols=3,rows=Math.ceil(n/cols);for(let i=0;i<n;i++){const c=i%cols,r=Math.floor(i/cols);p.push([34+c*16,16+r*(64/Math.max(rows-1,1))])}}
+  else if(type==='line'){for(let i=0;i<n;i++)p.push([n===1?50:12+i*(76/(n-1)),55])}
+  else{const wb=d.filter(x=>x[0]!=='R').length;let wi=0,ri=0;d.forEach(x=>{if(x[0]!=='R'){const c=wi%4,r=Math.floor(wi/4);p.push([10+c*10,25+r*18]);wi++}else{p.push([70+(ri%2)*12,35+Math.floor(ri/2)*22]);ri++}})}
+  return p}
+const stage=$('#stage');const dots=[];
+for(let i=0;i<16;i++){const e=document.createElement('div');e.className='dot';e.style.left='50%';e.style.top='110%';e.style.opacity=0;stage.appendChild(e);dots.push(e)}
+const cond=document.createElement('div');cond.className='dot';cond.style.background='var(--ink)';cond.textContent='C';cond.style.left='50%';cond.style.top='110%';cond.style.opacity=0;stage.appendChild(cond);
+let curBand=0;
+BANDS.forEach((b,i)=>{const x=document.createElement('button');x.className='btn';x.textContent=b.n;x.onclick=()=>setBand(i);$('#bandBtns').appendChild(x)});
+function setBand(i){curBand=i;const b=BANDS[i];$$('#bandBtns .btn').forEach((x,j)=>x.classList.toggle('on',i===j));
+  const pos=layout(b.lay,b.d);
+  dots.forEach((e,j)=>{if(j<b.d.length){e.style.background=COL[b.d[j][0]];e.textContent=b.d[j][1];e.style.opacity=1;e.style.left=pos[j][0]+'%';e.style.top=pos[j][1]+'%';e.style.transitionDelay=(j*.03)+'s'}else{e.style.opacity=0;e.style.top='110%';e.style.left='50%'}});
+  const semi=b.lay==='semi';cond.style.opacity=semi?1:0;cond.style.left='50%';cond.style.top=semi?'82%':'110%';
+  $('#aud').textContent=b.lay==='col'?'↑ ทิศทางเดินขบวน':'ผู้ชม';
+  $('#stLabel').textContent=b.f+(semi?' · C = Conductor':'');
+  const fams=[...new Set(b.d.map(x=>x[0]))];
+  const ab=[...new Set(b.d.map(x=>x[1]).filter(x=>ABBR[x]))];
+  $('#legend').innerHTML=fams.map(f=>`<span><span class="fam f${f}">${f}</span></span>`).join('')+(ab.length?`<span style="color:var(--mute);align-self:center">${ab.map(a=>a+' = '+ABBR[a]).join(' · ')}</span>`:'');
+  $('#bandInfo').innerHTML=`<div>เครื่องที่ใช้</div><div><b>${b.ins}</b></div><div>การจัดวง</div><div>${b.f}</div><div>แนวเพลง</div><div>${b.g}</div>`}
+
+/* ---------- 5 history ---------- */
+const ERA=[
+ {n:'Baroque',y:'~1600–1750',l:['<mark>★ Harpsichord</mark> เป็นเครื่องหลัก','Antonio Lucio Vivaldi — The Four Seasons','Johann Pachelbel — Canon in D','Johann Sebastian Bach'],a:'จำง่าย: Baroque = ลวดลายวิจิตร ประดับเยอะ เหมือนโบสถ์ยุโรปเก่า'},
+ {n:'Classic',y:'~1750–1820',l:['เริ่มนิยมใช้ Piano','Mozart · Beethoven','ดนตรีครบสมบูรณ์','Form สำคัญ: Symphony','ยึดกรอบโครงสร้างและความสมดุล'],a:'จำง่าย: Classic = บ้านสมมาตร สร้างตามแปลนเป๊ะ'},
+ {n:'Romantic',y:'~1820–1900',l:['ให้ความสำคัญกับอารมณ์ ความรู้สึก','จินตนาการส่วนบุคคล'],a:'จำง่าย: Romantic = เขียนไดอารี่ระบายใจ'}
+];
+function setEra(i){$$('.node circle').forEach((c,j)=>c.setAttribute('r',i===j?16:12));const e=ERA[i];
+  $('#eraDetail').innerHTML=`<div class="detail"><b>${e.n}</b> <small style="color:var(--mute)">${e.y}</small><ul>${e.l.map((x,j)=>`<li style="animation:fade .4s ${j*.12}s both">${x}</li>`).join('')}</ul><div class="tip">${e.a}</div></div>`}
+$$('.node').forEach(n=>n.addEventListener('click',()=>setEra(+n.dataset.e)));setEra(0);
+
+/* ---------- 6 quiz ---------- */
+// [topic, question, correct, wrong1, wrong2, wrong3, explanation]
+const Q=[
+['ศิลปะ','ภาพรามเกียรติ์ที่ระเบียงคด วัดพระแก้ว จัดเป็นจิตรกรรมประเภทใด','จิตรกรรมไทยประเพณี','จิตรกรรมร่วมสมัย','ประติมากรรมนูนต่ำ','ประยุกต์ศิลป์','เขียนจากวรรณคดีตามแบบแผนโบราณ จึงเป็นจิตรกรรมไทยประเพณี'],
+['ศิลปะ','ข้อใดไม่ใช่เรื่องที่นิยมเขียนในจิตรกรรมไทยประเพณี','ภาพทิวทัศน์เมืองสมัยใหม่','พุทธประวัติ','ชาดก','วรรณคดี','จิตรกรรมไทยประเพณีนิยม พุทธประวัติ ชาดก วรรณคดี'],
+['ศิลปะ','ประติมากรรมที่มองเห็นได้รอบด้าน เช่น พระวิษณุกรรม คือแบบใด','ลอยตัว','นูนต่ำ','นูนสูง','จิตรกรรมฝาผนัง','ลอยตัว ไม่ติดพื้นหลัง ดูได้ 360°'],
+['ศิลปะ','ลายนูนบนเหรียญ จัดเป็นประติมากรรมแบบใด','นูนต่ำ','นูนสูง','ลอยตัว','สถาปัตยกรรม','ยื่นจากพื้นเล็กน้อย ดูได้ด้านเดียว = นูนต่ำ'],
+['ศิลปะ','นูนสูงต่างจากนูนต่ำอย่างไร','ส่วนที่นูนยื่นออกจากพื้นมากกว่า','ดูได้รอบด้าน','ไม่มีพื้นหลัง','ใช้สีมากกว่า','นูนสูงยังติดพื้นหลัง แต่ยื่นออกมามากกว่านูนต่ำ'],
+['ศิลปะ','บ้าน วัด วัง เป็นงานศิลปะแขนงใด','สถาปัตยกรรม','ประติมากรรม','จิตรกรรม','วรรณกรรม','สิ่งก่อสร้าง = สถาปัตยกรรม'],
+['ศิลปะ','บทกวีและนวนิยาย เป็นงานศิลปะแขนงใด','วรรณกรรม','จิตรกรรม','สถาปัตยกรรม','ประยุกต์ศิลป์','งานเขียน = วรรณกรรม'],
+['ศิลปะ','ศิลปะที่เน้นประโยชน์ใช้สอย เรียกว่าอะไร','ประยุกต์ศิลป์','วิจิตรศิลป์','จิตรกรรม','วรรณกรรม','ประยุกต์ศิลป์ = Applied Arts'],
+['ศิลปะ','แรงบันดาลใจในการสร้างงานศิลปะ เกิดจากข้อใด','ประสบการณ์ อารมณ์ และสิ่งแวดล้อม','เงินทุน อุปกรณ์ และเวลา','คำสั่งของครู','การลอกเลียนผลงานผู้อื่น','สูตร: ประสบการณ์ + อารมณ์ + สิ่งแวดล้อม'],
+['ดนตรีไทย','ข้อใดเป็นเครื่องสีทั้งหมด','ซอด้วง ซออู้ ซอสามสาย','จะเข้ สะล้อ โหวด','ระนาดเอก ฆ้องวงใหญ่ กระจับปี่','ขลุ่ย ปี่ แคน กระจับปี่','ซอทุกชนิดใช้คันชักสี'],
+['ดนตรีไทย','ข้อใดเป็นเครื่องดนตรีประเภทเดียวกันทั้งหมด','ซอด้วง ซออู้ สะล้อ ซอสามสาย','กระจับปี่ สะล้อ ขิม โหวด','ปี่ แคน โหวด กระจับปี่','ระนาดเอก สะล้อ','ทั้งหมดเป็นเครื่องสี · สะล้อก็เป็นเครื่องสี'],
+['ดนตรีไทย','ข้อใดเป็นเครื่องดีดทั้งหมด','พิณน้ำเต้า กระจับปี่','ระนาดเอก สะล้อ','ปี่ แคน โหวด','ซอด้วง ขิม','พิณน้ำเต้าและกระจับปี่ ใช้ดีดสาย'],
+['ดนตรีไทย','กระจับปี่ บรรเลงด้วยกิริยาใด','ดีด','เป่า','สี','ตี','ชื่อมี "ปี่" แต่เป็นเครื่องดีด'],
+['ดนตรีไทย','ขิม บรรเลงด้วยกิริยาใด','ตี','ดีด','สี','เป่า','ขิมมีสาย แต่ใช้ไม้ตี'],
+['ดนตรีไทย','สะล้อ บรรเลงด้วยกิริยาใด','สี','ดีด','ตี','เป่า','สะล้อใช้คันชักสี'],
+['ดนตรีไทย','โหวด บรรเลงด้วยกิริยาใด','เป่า','ตี','ดีด','สี','โหวดเป็นเครื่องเป่าของอีสาน'],
+['ดนตรีไทย','จะเข้ บรรเลงด้วยกิริยาใด','ดีด','สี','ตี','เป่า','จะเข้ใช้ไม้ดีดสาย'],
+['ดนตรีไทย','ฉิ่งทำหน้าที่ใดในวงดนตรีไทย','ควบคุมอัตราจังหวะของวง','บรรเลงทำนองหลัก','ขึ้นเพลงนำวง','ให้เสียงประสานต่ำ','ฉิ่งคุมจังหวะ ฉิ่ง = ตีเปิด ฉับ = ตีปิด'],
+['ดนตรีไทย','อัตราจังหวะ "สามชั้น" มีความเร็วแบบใด','ช้า','ปานกลาง','เร็ว','เร็วที่สุดและไม่มีจังหวะ','สามชั้น ช้า · สองชั้น กลาง · ชั้นเดียว เร็ว'],
+['ดนตรีไทย','อัตราจังหวะ "ชั้นเดียว" มีความเร็วแบบใด','เร็ว','ช้า','ปานกลาง','ช้าที่สุด','ชั้นยิ่งน้อย ยิ่งเร็ว'],
+['ดนตรีไทย','อัตราจังหวะ "สองชั้น" มีความเร็วแบบใด','ปานกลาง','ช้า','เร็ว','ช้าที่สุด','สองชั้นอยู่ตรงกลาง'],
+['ดนตรีไทย','จังหวะหน้าทับ ควบคุมด้วยสิ่งใด','เสียงกลองประเภทต่างๆ','เสียงฉิ่ง','เสียงปี่','เสียงขับร้อง','หน้าทับ = แพทเทิร์นจังหวะของกลอง'],
+['ดนตรีไทย','เครื่องดนตรีที่นำวงปี่พาทย์ คือข้อใด','ระนาดเอก','ซอด้วง','ขลุ่ย','ฉิ่ง','วงปี่พาทย์ ระนาดเอกนำวง'],
+['ดนตรีไทย','เครื่องดนตรีที่นำวงเครื่องสาย คือข้อใด','ซอด้วง','ระนาดเอก','ฆ้องวงใหญ่','ตะโพน','วงเครื่องสาย ซอด้วงนำวง'],
+['ดนตรีไทย','วงขับไม้สมัยสุโขทัย ใช้เครื่องสีชนิดใด','ซอสามสาย','ซอด้วง','สะล้อ','ซออู้','วงขับไม้ = คนขับลำนำ + บัณเฑาะว์ + ซอสามสาย'],
+['เครื่องดนตรีสากล','เครื่องดนตรีสากลแบ่งเป็นกี่กลุ่ม','5 กลุ่ม','3 กลุ่ม','4 กลุ่ม','6 กลุ่ม','String · Woodwind · Brass · Keyboard · Percussion'],
+['เครื่องดนตรีสากล','Saxophone จัดอยู่กลุ่มใด','Woodwind','Brass','Percussion','Keyboard','ทำจากโลหะ แต่ใช้ลิ้นเดี่ยว จึงเป็น Woodwind'],
+['เครื่องดนตรีสากล','Euphonium จัดอยู่กลุ่มใด','Brass','Woodwind','String','Percussion','Euphonium เป่าผ่าน Mouthpiece = Brass'],
+['เครื่องดนตรีสากล','Oboe · Bassoon · English horn อยู่กลุ่มใด','Woodwind','Brass','String','Keyboard','ทั้งสามเป็นลิ้นคู่ Double reed'],
+['เครื่องดนตรีสากล','Marimba จัดอยู่กลุ่มใด','Percussion','Keyboard','String','Woodwind','ใช้ไม้ตีลิ่มไม้ = Percussion'],
+['เครื่องดนตรีสากล','Accordion และ Harmonica จัดอยู่กลุ่มใด','Keyboard','Woodwind','Brass','Percussion','ตามสไลด์อยู่กลุ่ม Keyboard'],
+['เครื่องดนตรีสากล','Mandolin และ Ukulele จัดอยู่กลุ่มใด','String','Percussion','Keyboard','Woodwind','เครื่องสายแบบดีด'],
+['เครื่องดนตรีสากล','Flute จัดอยู่กลุ่มใด','Woodwind','Brass','Keyboard','String','ทำจากโลหะ แต่เป็น Woodwind'],
+['เครื่องดนตรีสากล','Harpsichord จัดอยู่กลุ่มใด','Keyboard','String','Percussion','Brass','มีลิ่มนิ้วกด = Keyboard'],
+['เครื่องดนตรีสากล','เครื่องสายสากลข้อใดเล่นด้วยการสีทั้งหมด','Violin Viola Cello Double bass','Guitar Harp Mandolin Ukulele','Violin Guitar Harp Cello','Piano Organ Accordion Harmonica','String แบบสีใช้คันชัก · Guitar Harp Mandolin Ukulele เป็นแบบดีด'],
+['เครื่องดนตรีสากล','Cello เล่นด้วยวิธีใด','สีด้วยคันชัก','ดีดด้วยนิ้ว','เป่าลม','ตีด้วยค้อน','Cello อยู่กลุ่ม String แบบสี'],
+['เครื่องดนตรีสากล','Harpsichord ทำให้เกิดเสียงอย่างไร','กลไกดีดสายเมื่อกดลิ่มนิ้ว','ค้อนตีสายเมื่อกดลิ่มนิ้ว','ลมผ่านท่อ','ใช้คันชักสีสาย','Harpsichord ดีดสาย · Piano ค้อนตีสาย'],
+['เครื่องดนตรีสากล','Quartet มีผู้เล่นกี่คน','4 คน','3 คน','5 คน','8 คน','Quarter = 1/4 → 4 คน'],
+['เครื่องดนตรีสากล','Quintet มีผู้เล่นกี่คน','5 คน','4 คน','6 คน','8 คน','Quintet = 5'],
+['เครื่องดนตรีสากล','Octet มีผู้เล่นกี่คน','8 คน','6 คน','7 คน','9 คน','Octopus 8 ขา → Octet 8'],
+['เครื่องดนตรีสากล','String Quartet ประกอบด้วยเครื่องใด','Violin 2 ตัว Viola และ Cello','Violin Flute Piano และ Cello','Guitar 2 ตัว Bass และ Drum','Violin Viola Cello และ Double bass อย่างละ 2','Violin 1 · Violin 2 · Viola · Cello'],
+['วงดนตรีสากล','วง Orchestra ใช้เครื่องดนตรีกลุ่มใด','S + W + B + P','W + B + P','B + P','W + B + R','Orchestra ครบ String Woodwind Brass Percussion'],
+['วงดนตรีสากล','วง Military ใช้เครื่องดนตรีกลุ่มใด','W + B + P','S + W + B + P','B + P','Gt + Bs + Kb + Dr','Military = W + B + P'],
+['วงดนตรีสากล','วง Brass Band ใช้เครื่องดนตรีกลุ่มใด','B + P','W + B + P','W + B + R','S + B','Brass Band ไม่มี Woodwind'],
+['วงดนตรีสากล','วง Big Band ใช้เครื่องดนตรีกลุ่มใด','W + B + R','S + W + B + P','B + P','Gt + Bs + Kb + Dr','R = Rhythm section'],
+['วงดนตรีสากล','วง Big Band จัดวงแบบใด','แบ่ง 2 กลุ่ม เครื่องเป่ากับ Rhythm','ครึ่งวงกลม','แถวตอน','วงกลมรอบผู้ชม','กลุ่มเครื่องเป่า | กลุ่ม Rhythm'],
+['วงดนตรีสากล','วง Military และ Brass Band จัดวงแบบใด','แถวตอน','ครึ่งวงกลม','หน้ากระดาน','แบ่ง 2 กลุ่ม','วงเดินขบวน = แถวตอน'],
+['วงดนตรีสากล','วง Orchestra และ Chamber จัดวงแบบใด','ครึ่งวงกลม','แถวตอน','หน้ากระดาน','แบ่ง 2 กลุ่ม','มี Conductor อยู่ตรงกลาง'],
+['วงดนตรีสากล','วง Jazz และ Popular จัดวงแบบใด','หน้ากระดาน','แถวตอน','ครึ่งวงกลม','แบ่ง 2 กลุ่ม','ยืนเรียงหน้าเวทีหันหาผู้ชม'],
+['วงดนตรีสากล','แนวเพลงหลักของวง Military และ Brass Band คือข้อใด','March','Jazz','Pop','Classic','วงเดินขบวน เล่นเพลงมาร์ช'],
+['วงดนตรีสากล','วง Shadow และ Popular ใช้เครื่องดนตรีใด','Gt + Bs + Kb + Dr','S + W + B + P','W + B + P','B + P','Guitar · Bass · Keyboard · Drum'],
+['วงดนตรีสากล','วง Chamber มีผู้เล่นกี่คน','2–9 คน','10–20 คน','1 คน','มากกว่า 50 คน','Chamber = วงเล็ก 2–9 คน'],
+['วงดนตรีสากล','แนวเพลงของวง Combo Band และ Big Band คือข้อใด','Jazz','March','Classic','Folk song','Combo และ Big Band เล่น Jazz'],
+['วงดนตรีสากล','วง Jazz ใช้เครื่องดนตรีใด','Dr + Bs + Pn + Tp + Tb + Cl','B + P','S + W + B + P','W + B + P','Drum Bass Piano Trumpet Trombone Clarinet'],
+['ประวัติดนตรีตะวันตก','The Four Seasons เป็นผลงานของใคร','Antonio Lucio Vivaldi','Johann Pachelbel','Mozart','Beethoven','Vivaldi ยุค Baroque'],
+['ประวัติดนตรีตะวันตก','Canon in D เป็นผลงานของใคร','Johann Pachelbel','Antonio Lucio Vivaldi','Bach','Mozart','Pachelbel ยุค Baroque'],
+['ประวัติดนตรีตะวันตก','Mozart และ Beethoven อยู่ในยุคใด','Classic','Baroque','Romantic','ยุคกลาง','ตามสไลด์อยู่ยุค Classic'],
+['ประวัติดนตรีตะวันตก','ยุคที่เน้นอารมณ์ ความรู้สึก และจินตนาการส่วนบุคคล คือยุคใด','Romantic','Baroque','Classic','ยุคกลาง','Romantic = ระบายความรู้สึก'],
+['ประวัติดนตรีตะวันตก','ดนตรียุค Classic มีลักษณะเด่นอย่างไร','ยึดกรอบโครงสร้างและความสมดุล','เน้นอารมณ์ส่วนตัวสุดขีด','ไม่มีแบบแผน','ใช้แต่เครื่องตี','Classic = โครงสร้าง + สมดุล'],
+['ประวัติดนตรีตะวันตก','เปียโนเริ่มเป็นที่นิยมในยุคใด','Classic','Baroque','Romantic','ยุคกลาง','Baroque ใช้ Harpsichord → Classic เริ่มนิยม Piano'],
+['ประวัติดนตรีตะวันตก','Harpsichord เป็นเครื่องดนตรีเด่นของยุคใด','Baroque','Classic','Romantic','ร่วมสมัย','Harpsichord = Baroque'],
+['ประวัติดนตรีตะวันตก','Symphony เป็น form สำคัญของยุคใด','Classic','Baroque','Romantic','ยุคกลาง','ตามสไลด์: Classic · form Symphony'],
+['ประวัติดนตรีตะวันตก','Bach อยู่ในยุคใด','Baroque','Classic','Romantic','ร่วมสมัย','Bach = Baroque'],
+['ประวัติดนตรีตะวันตก','ข้อใดเรียงยุคดนตรีตะวันตกถูกต้อง','Baroque → Classic → Romantic','Classic → Baroque → Romantic','Romantic → Classic → Baroque','Baroque → Romantic → Classic','จำ B-C-R ตามตัวอักษร']
+];
+const STARRE=/กระจับปี่|ฉิ่ง|ชั้น|Harpsichord|Quartet|Quintet|Octet|คันชัก/;
+Q.forEach(q=>q.star=STARRE.test(q.slice(1,7).join(' ')));
+const QS=Q.filter(q=>q.star);
+let qs=[],qi=0,qScore=0,wrongs=[];
+function qStart(list){qs=shuffle(list).map(q=>({q,opts:shuffle(q.slice(2,6))}));qi=0;qScore=0;wrongs=[];qRender()}
+function qHome(){$('#qwrap').innerHTML=`<div class="card center"><h2>ข้อสอบจำลอง</h2><p class="sub">${Q.length} ข้อ · ครอบคลุมทั้ง 5 บท · ★ = จุดเน้น</p><div class="row" style="justify-content:center"><button class="btn dark" id="q20">สุ่ม 20 ข้อ</button><button class="btn" id="qAll">ทำทั้งหมด ${Q.length} ข้อ</button><button class="btn" id="qStar" style="border-color:var(--acc2)">★ เฉพาะข้อเน้น ${QS.length} ข้อ</button></div></div>`;
+  $('#qStar').onclick=()=>qStart(QS);
+  $('#q20').onclick=()=>qStart(shuffle(Q).slice(0,20));$('#qAll').onclick=()=>qStart(Q)}
+function qRender(){if(qi>=qs.length)return qEnd();const {q,opts}=qs[qi];
+  $('#qwrap').innerHTML=`<div class="card"><div class="qtopic">${q.star?'<span class="qstar">★ เน้น</span> · ':''}${q[0]} · ข้อ ${qi+1}/${qs.length} · ถูก ${qScore}</div><div class="bar"><i style="width:${qi/qs.length*100}%"></i></div><div class="qtext">${q[1]}</div><div class="choices">${opts.map((o,i)=>`<button class="choice" data-i="${i}">${'กขคง'[i]}. ${o}</button>`).join('')}</div><div id="qExp"></div></div>`;
+  $$('.choice').forEach(c=>c.onclick=()=>{const pick=opts[+c.dataset.i],ok=pick===q[2];if(ok)qScore++;else wrongs.push(q);
+    $$('.choice').forEach(x=>{x.disabled=true;if(opts[+x.dataset.i]===q[2])x.classList.add('good')});if(!ok)c.classList.add('badc');
+    $('#qExp').innerHTML=`<div class="exp"><b>${ok?'ถูกต้อง':'ยังไม่ถูก'}</b> · ${q[6]}</div><div class="center mt"><button class="btn dark" id="qNext">${qi+1<qs.length?'ข้อถัดไป':'ดูคะแนน'}</button></div>`;
+    $('#qNext').onclick=()=>{qi++;qRender()}})}
+function qEnd(){const pct=Math.round(qScore/qs.length*100);
+  $('#qwrap').innerHTML=`<div class="card"><div class="center lbl">คะแนน</div><div class="score">${qScore}/${qs.length}</div><div class="center sub">${pct}%</div><div class="row" style="justify-content:center">${wrongs.length?'<button class="btn dark" id="qRe">ทำข้อที่ผิดใหม่</button>':''}<button class="btn" id="qBack">กลับหน้าแรก</button></div>${wrongs.length?'<h2 class="mt">ข้อที่ผิด</h2>'+wrongs.map(w=>`<div class="wrong">${w[1]}<br><b style="color:var(--ok)">${w[2]}</b></div>`).join(''):'<p class="center mt">ถูกทุกข้อ</p>'}</div>`;
+  if(wrongs.length)$('#qRe').onclick=()=>qStart(wrongs.slice());$('#qBack').onclick=qHome}
+qHome();
+
+const STARS=[
+ {t:'thai',id:'s-thai',h:'กระจับปี่ = ดีด',d:'ชื่อมี "ปี่" แต่ไม่ได้เป่า · ใช้ดีดสาย',x:'ซออู้ ซอด้วง ซอสามสาย = สี'},
+ {t:'thai',id:'s-ching',h:'ฉิ่ง คุมอัตราจังหวะ',d:'สามชั้น = ช้า · สองชั้น = กลาง · ชั้นเดียว = เร็ว',x:'ชั้นยิ่งมาก ยิ่งช้า'},
+ {t:'inst',id:'s-fam',h:'ดนตรีสากล ★★★',d:'5 กลุ่ม: String · Woodwind · Brass · Keyboard · Percussion',x:'S W B K P + R = Rhythm'},
+ {t:'inst',id:'s-fam',f:'S',h:'เครื่องสาย String แบบสี',d:'Violin · Viola · Cello · Double bass ใช้คันชักสี',x:'แบบดีด: Guitar Harp Mandolin Ukulele'},
+ {t:'inst',id:'s-fam',f:'K',h:'Harpsichord',d:'Keyboard ยุค Baroque · กลไก "ดีด" สาย',x:'Piano ใช้ค้อน "ตี" สาย → นิยมยุค Classic'},
+ {t:'inst',id:'s-chamber',n:4,h:'Quartet · Quintet · Octet',d:'Quartet 4 คน · Quintet 5 คน · Octet 8 คน',x:'Quarter = 1/4 · Octopus 8 ขา'}
+];
+STARS.forEach((s,i)=>{const d=document.createElement('div');d.className='scard';d.style.animationDelay=(i*.07)+'s';
+  d.innerHTML=`<span class="big">★ ${s.h}</span><span>${s.d}</span><span style="color:var(--mute);font-size:14.5px">${s.x}</span><button class="go">ไปที่บทเรียน ›</button>`;
+  d.querySelector('.go').onclick=()=>{show(s.t);if(s.f)$(`#famBtns [data-f="${s.f}"]`).click();if(s.n)$(`#chBtns [data-n="${s.n}"]`).click();
+    const el=document.getElementById(s.id);setTimeout(()=>{const y=el.getBoundingClientRect().top+scrollY-110;window.scrollTo({top:y,behavior:'smooth'});el.classList.remove('flash');void el.offsetWidth;el.classList.add('flash')},60)};
+  $('#starGrid').appendChild(d)});
+$('#starQuiz').onclick=()=>{show('quiz');qStart(QS)};
+try{if('serviceWorker' in navigator&&/github\.io$/.test(location.hostname))navigator.serviceWorker.register('sw.js')}catch(e){}
+let saved=null;try{saved=localStorage.getItem('mf_tab')}catch(e){}
+if(saved&&document.getElementById(saved))show(saved);
+})();
+</script>
+</body>
+</html>
