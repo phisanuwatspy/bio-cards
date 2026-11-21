@@ -170,7 +170,7 @@ mark{background:#F6DFA8;color:inherit;border-radius:4px;padding:0 3px}
 <!-- ================= STAR ================= -->
 <section class="lesson on" id="star">
   <div class="card hl">
-    <h2>★ จุดเน้น · ดอกจัน + ขีดเส้นแดง</h2>
+    <h2>★ จุดเน้น</h2>
     <p class="sub">อ่านหน้านี้ก่อน · แตะ "ไปที่บทเรียน" เพื่อดูแอนิเมชัน</p>
     <div class="sgrid" id="starGrid"></div>
   </div>
@@ -463,7 +463,7 @@ ENS.forEach(e=>{const d=document.createElement('div');d.className='ens';d.innerH
 /* ---------- 3 instruments ---------- */
 const FAM={
  S:{n:'String',th:'เครื่องสาย',g:[['★ สี · ใช้คันชัก','<mark>Violin · Viola · Cello · Double bass</mark>'],['ดีด','Guitar · Harp · Mandolin · Ukulele']],tr:'Marimba ไม่ใช่ String — อยู่ Percussion'},
- W:{n:'Woodwind',th:'เครื่องลมไม้',g:[['ไม่มีลิ้น','Flute · Piccolo · Recorder'],['ลิ้นเดี่ยว · Single reed','Clarinet · Saxophone'],['★ ลิ้นคู่ · Double reed · ขีดเส้นแดง','<u class="red">Oboe · Bassoon · English horn / Cor anglais</u>']],tr:'★ Oboe · Bassoon · English horn = ลิ้นคู่ · Cor anglais คือชื่อเดียวกับ English horn<br>Saxophone และ Flute ทำจากโลหะ แต่เป็น <b>Woodwind</b> — ดูที่วิธีทำให้เกิดเสียง ไม่ใช่วัสดุ'},
+ W:{n:'Woodwind',th:'เครื่องลมไม้',g:[['ไม่มีลิ้น','Flute · Piccolo · Recorder'],['ลิ้นเดี่ยว · Single reed','Clarinet · Saxophone'],['★ ลิ้นคู่ · Double reed','<u class="red">Oboe · Bassoon · English horn / Cor anglais</u>']],tr:'★ Oboe · Bassoon · English horn = ลิ้นคู่ · Cor anglais คือชื่อเดียวกับ English horn<br>Saxophone และ Flute ทำจากโลหะ แต่เป็น <b>Woodwind</b> — ดูที่วิธีทำให้เกิดเสียง ไม่ใช่วัสดุ'},
  B:{n:'Brass',th:'เครื่องลมทองเหลือง',g:[['เป่าผ่านปากเป่า · Mouthpiece','<u class="red">Euphonium ★</u> · Trumpet · Cornet · Trombone · Tuba · Sousaphone · Bugle · French horn']],tr:'★ Euphonium = Brass รูปร่างคล้าย Tuba ขนาดเล็ก · อย่าสับสนกับ Woodwind'},
  K:{n:'Keyboard',th:'เครื่องลิ่มนิ้ว',g:[['','<mark>Harpsichord ★</mark> · Organ · Piano · Accordion · Harmonica']],tr:'★ Harpsichord = Keyboard ยุค Baroque ใช้กลไก "ดีด" สาย · Piano ใช้ค้อน "ตี" สาย'},
  P:{n:'Percussion',th:'เครื่องกระทบ',g:[['มีระดับเสียง','Marimba · Xylophone · Tubular bell · Timpani'],['ไม่มีระดับเสียง','Bongo · Drumset · Cymbal · Snare drum']],tr:'Marimba มีลิ่มไม้ แต่ใช้ไม้ตี → Percussion'}
@@ -631,7 +631,7 @@ const STARS=[
  {t:'inst',id:'s-chamber',n:4,h:'Quartet · Quintet · Octet',d:'Quartet 4 คน · Quintet 5 คน · Octet 8 คน',x:'Quarter = 1/4 · Octopus 8 ขา'}
 ];
 STARS.forEach((s,i)=>{const d=document.createElement('div');d.className='scard';d.style.animationDelay=(i*.07)+'s';
-  d.innerHTML=`${s.r?'<span class="star r" style="align-self:flex-start">ขีดเส้นแดง</span>':''}<span class="big">★ ${s.h}</span><span>${s.d}</span><span style="color:var(--mute);font-size:14.5px">${s.x}</span><button class="go">ไปที่บทเรียน ›</button>`;
+  d.innerHTML=`<span class="big">★ ${s.h}</span><span>${s.d}</span><span style="color:var(--mute);font-size:14.5px">${s.x}</span><button class="go">ไปที่บทเรียน ›</button>`;
   d.querySelector('.go').onclick=()=>{show(s.t);if(s.f)$(`#famBtns [data-f="${s.f}"]`).click();if(s.n)$(`#chBtns [data-n="${s.n}"]`).click();
     const el=document.getElementById(s.id);setTimeout(()=>{const y=el.getBoundingClientRect().top+scrollY-110;window.scrollTo({top:y,behavior:'smooth'});el.classList.remove('flash');void el.offsetWidth;el.classList.add('flash')},60)};
   $('#starGrid').appendChild(d)});
